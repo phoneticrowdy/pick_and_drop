@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pick_and_drop/HOME.dart';
+import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/routes.dart';
 
 class login extends StatefulWidget {
@@ -27,9 +28,7 @@ class _loginState extends State<login> {
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Container(
-                    width: 200,
-                    height: 150,
-                    child: Image.asset('asset/images/flutter-logo.png')),
+                    width: 200, height: 150, child: Image.asset(img_profile)),
               ),
             ),
             Padding(
@@ -65,7 +64,7 @@ class _loginState extends State<login> {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                  color: Colors.black, borderRadius: BorderRadius.circular(20)),
               child: FlatButton(
                 onPressed: () {
                   Navigator.push(
