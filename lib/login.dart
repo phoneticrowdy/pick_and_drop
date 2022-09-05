@@ -51,14 +51,18 @@ class _loginState extends State<login> {
                     hintText: 'Anshu@123'),
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
             InkWell(
-              onTap: () {
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: Text(
+              child: Container(
+                  child: Text(
                 'Forgot Password',
                 style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
+              )),
+            ),
+            SizedBox(
+              height: 30,
             ),
             Container(
               height: 50,
