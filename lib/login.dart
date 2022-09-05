@@ -51,8 +51,8 @@ class _loginState extends State<login> {
                     hintText: 'Anshu@123'),
               ),
             ),
-            FlatButton(
-              onPressed: () {
+            InkWell(
+              onTap: () {
                 //TODO FORGOT PASSWORD SCREEN GOES HERE
               },
               child: Text(
@@ -65,7 +65,7 @@ class _loginState extends State<login> {
               width: 250,
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(20)),
-              child: FlatButton(
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => MyHomePage()));
