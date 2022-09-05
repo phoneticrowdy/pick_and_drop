@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+const img_pager = "assets/images/pager1.jpg";
 const img_profile = 'assets/images/profile.JPG';
 const img_congrates = 'assets/images/img_congrates.png';
 const img_natural = 'assets/images/img_matural.png';

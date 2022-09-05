@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/Style/my_strings.dart';
 import 'Style/Constant.dart';
+
+
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
   @override
   _SignupPageState createState() => _SignupPageState();
 }
+
+
+const List<String> list = <String>['Male', 'Female','Other'];
+const List<String> list_age = <String>['18','19','20','21','22','23','24'];
+var dropdownValue_gender = list.first;
+var dropdownValue_age = list_age.first;
 
 final firstName = TextEditingController();
 final lastName = TextEditingController();
@@ -48,12 +55,12 @@ class _SignupPageState extends State<SignupPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 22.7.h, left: 20.7.w),
+                    margin: EdgeInsets.only(top: 0, left: 20.7),
                     child: InkWell(
                       child: SvgPicture.asset(
                         icon_back,
-                        height: 15.h,
-                        width: 21.3.w,
+                        height: 15,
+                        width: 21.3,
                       ),
                       onTap: () {
                         Navigator.pop(context);
@@ -63,45 +70,107 @@ class _SignupPageState extends State<SignupPage> {
                   Container(
                     margin: EdgeInsets.only(top: 32.3, left: 20.7),
                     child: Text(
-                      str_my_profile,
+                      "Creating Account",
                       style: TextStyle(
                           fontFamily: montserrat_bold,
-                          fontSize: 18.3,
+                          fontSize: 22,
                           color: black_163351),
                     ),
                   ),
                   SizedBox(
-                    height: 27.5.h,
+                    height: 27.5,
                   ),
                   Center(
                     child: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
                         CircleAvatar(
-                          radius: 40.r,
+                          radius: 40,
                           backgroundColor: gray_e2e2e2,
                           child: ClipRRect(
                             // borderRadius: BorderRadius.circular(20),
                             child: Image.asset(
                               img_logo,
-                              width: 80.w,
-                              height: 80.h,
+                              width: 80,
+                              height: 80,
                               fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         Container(
-                            margin: EdgeInsets.only(bottom: 3.h),
+                            margin: EdgeInsets.only(bottom: 3),
                             child: SvgPicture.asset(
                               icon_plus,
-                              width: 18.5.w,
-                              height: 18.5.h,
+                              width: 18.5,
+                              height: 18.5,
                             ))
                       ],
                     ),
                   ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 18,),
+                          child: DropdownButton<String>(
+                                                            
+                        value: dropdownValue,
+                        hint: Text("Gender"),
+                        iconSize: 30,
+                        
+                        icon: const Icon(Icons.arrow_downward),
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.deepPurple,fontSize: 30),
+                        // underline: Container(
+                        //   height: 2,
+                        //   color: Colors.deepPurpleAccent,
+                        // ),
+                        onChanged: (String? value) {
+                          // This is called when the user selects an item.
+                          setState(() {
+                            dropdownValue = value!;
+                          });
+                        },
+                        items: list.map<DropdownMenuItem<String>>((String value) 
+                        {return  DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      )),
+                      SizedBox(
+                        width: 120,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 18,),
+                        child: DropdownButton<String>(                                                           
+                        value: dropdownValue,
+                        hint: Text("Age "),
+                        menuMaxHeight: 150,
+                        iconSize: 30,                        
+                        icon: const Icon(Icons.arrow_downward),
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.deepPurple,fontSize: 30),
+                        // underline: Container(
+                        //   height: 2,
+                        //   color: Colors.deepPurpleAccent,
+                        // ),
+                        onChanged: (String? value) {
+                          // This is called when the user selects an item.
+                          setState(() {
+                            dropdownValue_age = value!;
+                          });
+                        },
+                        items: list_age.map<DropdownMenuItem<String>>((String value) 
+                        {return  DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      )),
+                    ],
+                  ),
                   Container(
-                    margin: EdgeInsets.only(left: 26.w, right: 26.w, top: 30.h),
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 30),
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -118,32 +187,32 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                              left: 20.w, top: 15.h, bottom: 15.h),
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
                           labelText: str_first_name,
                           labelStyle: TextStyle(
-                              fontSize: 12.5.sp,
+                              fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
                           hintText: str_first_name,
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
-                              fontSize: 14.sp),
+                              fontSize: 14),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: black_163351, width: 1.w)),
+                                  BorderSide(color: black_163351, width: 1)),
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: gray_9d9d9d, width: 1.w)),
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
                         )),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 26.w, right: 26.w, top: 30.h),
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 30),
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -160,103 +229,201 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                              left: 20.w, top: 15.h, bottom: 15.h),
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
                           labelText: str_last_name,
                           labelStyle: TextStyle(
-                              fontSize: 12.5.sp,
+                              fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
                           hintText: str_last_name,
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
-                              fontSize: 14.sp),
+                              fontSize: 14),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: black_163351, width: 1.w)),
+                                  BorderSide(color: black_163351, width: 1)),
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: gray_9d9d9d, width: 1.w)),
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
                         )),
                   ),
                   Container(
-                    margin:
-                        EdgeInsets.only(left: 26.w, right: 26.w, top: 16.5.h),
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
-                        enabled: false,
-                        initialValue: "Email",
-                        style: TextStyle(color: Colors.grey),
+                        // enabled: false,
+                        initialValue: "Adhaar Number",
+                        // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                              left: 20.w, top: 15.h, bottom: 15.h),
-                          labelText: str_e_mail,
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                          labelText: "ID Number",
                           labelStyle: TextStyle(
-                              fontSize: 12.5.sp,
+                              fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
                           hintText: str_enter_mail,
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
-                              fontSize: 14.sp),
+                              fontSize: 14),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: black_163351, width: 1.w)),
+                                  BorderSide(color: black_163351, width: 1)),
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: gray_9d9d9d, width: 1.w)),
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
                         )),
                   ),
                   Container(
-                    margin:
-                        EdgeInsets.only(left: 26.w, right: 26.w, top: 16.5.h),
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
-                        enabled: false,
-                        initialValue: "pata nahi yrr",
+                        // enabled: false,
+                        initialValue: "Email",
+                        // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
-                        style: TextStyle(color: Colors.grey),
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                              left: 20.w, top: 15.h, bottom: 15.h),
-                          labelText: str_company_name,
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                          labelText: str_e_mail,
                           labelStyle: TextStyle(
-                              fontSize: 12.5.sp,
+                              fontSize: 12.5,
+                              fontFamily: sfpro_text_regular,
+                              color: black_163351),
+                          hintText: str_enter_mail,
+                          floatingLabelStyle: TextStyle(
+                              color: black_163351,
+                              fontFamily: sfpro_text_medium,
+                              fontSize: 14),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              borderSide:
+                                  BorderSide(color: black_163351, width: 1)),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              borderSide:
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
+                    child: TextFormField(
+                        // enabled: false,
+                        initialValue: "Email",
+                        // style: TextStyle(color: Colors.black),
+                        cursorColor: gray_9d9d9d,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                          labelText: str_e_mail,
+                          labelStyle: TextStyle(
+                              fontSize: 12.5,
+                              fontFamily: sfpro_text_regular,
+                              color: black_163351),
+                          hintText: str_enter_mail,
+                          floatingLabelStyle: TextStyle(
+                              color: black_163351,
+                              fontFamily: sfpro_text_medium,
+                              fontSize: 14),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              borderSide:
+                                  BorderSide(color: black_163351, width: 1)),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              borderSide:
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
+                    child: TextFormField(
+                        // enabled: false,
+                        initialValue: "Email",
+                        // style: TextStyle(color: Colors.black),
+                        cursorColor: gray_9d9d9d,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                          labelText: str_e_mail,
+                          labelStyle: TextStyle(
+                              fontSize: 12.5,
+                              fontFamily: sfpro_text_regular,
+                              color: black_163351),
+                          hintText: str_enter_mail,
+                          floatingLabelStyle: TextStyle(
+                              color: black_163351,
+                              fontFamily: sfpro_text_medium,
+                              fontSize: 14),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              borderSide:
+                                  BorderSide(color: black_163351, width: 1)),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              borderSide:
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
+                    child: TextFormField(
+                        initialValue: "Engineer",
+                        cursorColor: gray_9d9d9d,
+                        // style: TextStyle(color: Colors.grey),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                          labelText: "Profession",
+                          labelStyle: TextStyle(
+                              fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
                           hintText: str_comapany_name,
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
-                              fontSize: 14.sp),
+                              fontSize: 14),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: black_163351, width: 1.w)),
+                                  BorderSide(color: black_163351, width: 1)),
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: gray_9d9d9d, width: 1.w)),
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
                         )),
                   ),
                   Container(
-                    margin:
-                        EdgeInsets.only(left: 26.w, right: 26.w, top: 16.5.h),
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -277,32 +444,32 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                              left: 20.w, top: 15.h, bottom: 15.h),
+                          contentPadding:
+                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
                           labelText: str_mobile_number,
                           labelStyle: TextStyle(
-                              fontSize: 12.5.sp,
+                              fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
                           hintText: str_enter_mobile_number,
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
-                              fontSize: 14.sp),
+                              fontSize: 14),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: black_163351, width: 1.w)),
+                                  BorderSide(color: black_163351, width: 1)),
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6)),
                               borderSide:
-                                  BorderSide(color: gray_9d9d9d, width: 1.w)),
+                                  BorderSide(color: gray_9d9d9d, width: 1)),
                         )),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 26.w, right: 26.w, top: 26.h),
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 26),
                     child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -310,7 +477,7 @@ class _SignupPageState extends State<SignupPage> {
                             str_save,
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15.sp,
+                                fontSize: 15,
                                 fontFamily: sfpro_text_medium),
                           ),
                           onPressed: () {
@@ -326,16 +493,16 @@ class _SignupPageState extends State<SignupPage> {
                             onPrimary: Colors.white,
                             elevation: 0,
                             padding: EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 16.h),
+                                horizontal: 0, vertical: 16),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6.r),
+                              borderRadius: BorderRadius.circular(6),
                               // side: BorderSide(color: skygreen_24d39e, width: 0),
                             ),
                           )),
                     ),
                   ),
                   SizedBox(
-                    height: 27.5.h,
+                    height: 27.5,
                   ),
                 ],
               ),
