@@ -19,6 +19,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Home"),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.call),
+            label: 'Calls',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.camera),
+            label: 'Camera',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Chats',
+          ),
+        ],
+      ),
       drawer: Drawer(
           backgroundColor: btn_black_0b0b0b,
           child: Column(

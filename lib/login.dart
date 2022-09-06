@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pick_and_drop/HOME.dart';
+import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/routes.dart';
 
@@ -25,10 +26,11 @@ class _loginState extends State<login> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding: const EdgeInsets.only(top: 0),
               child: Center(
                 child: Container(
-                    width: 200, height: 150, child: Image.asset(img_profile)),
+                    // width: 200, height: 150,
+                     child: Image.asset(img_pager)),
               ),
             ),
             Padding(
@@ -51,21 +53,21 @@ class _loginState extends State<login> {
                     hintText: 'Anshu@123'),
               ),
             ),
-            FlatButton(
-              onPressed: () {
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: Text(
+            SizedBox(
+              height: 10
+            ),
+            InkWell(
+              child: Container(
+                  child: Text(
                 'Forgot Password',
                 style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
+              )),
+            ),
+            SizedBox(
+              height: 50,
             ),
             Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.black, borderRadius: BorderRadius.circular(20)),
-              child: FlatButton(
+              child: ElevatedButton(                
                 onPressed: () {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => MyHomePage()));
@@ -74,10 +76,20 @@ class _loginState extends State<login> {
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
+                style: ElevatedButton.styleFrom(
+              primary: pink_ff5465,
+              onPrimary: Colors.white,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+                // side: BorderSide(color: skygreen_24d39e, width: 0),
+              ),
+            )
               ),
             ),
             SizedBox(
-              height: 130,
+              height: 100,
             ),
             Text('New User? Create Account')
           ],
