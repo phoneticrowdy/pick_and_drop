@@ -16,11 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      
+      title: 'Pick & drop',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: generateRoute,
       initialRoute: '/',
       theme: ThemeData(
+        backgroundColor: bg_456999,
         primarySwatch: primaryBlack,
       ),
       home: const MyHomePage(),

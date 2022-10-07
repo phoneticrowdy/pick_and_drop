@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+const white = Color(0xffe2e2e2);
 const black = Color(0xff273433);
 const black_163351 = Color(0xff163351);
-const bg_456999 = Color(0xff456999);
+const bg_456999 = Color.fromARGB(255, 154, 225, 244);
 const btn_black_0b0b0b = Color(0xff0b0b0b);
 const drawer_bg = Color.fromARGB(255, 54, 47, 47);
 const gray_9d9d9d = Color(0xff9d9d9d);
