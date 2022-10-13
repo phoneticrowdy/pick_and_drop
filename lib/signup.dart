@@ -5,8 +5,7 @@ import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/Style/my_strings.dart';
 import 'Style/Constant.dart';
-
-
+import 'Apis.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -14,9 +13,16 @@ class SignupPage extends StatefulWidget {
   _SignupPageState createState() => _SignupPageState();
 }
 
-
-const List<String> list = <String>['Male', 'Female','Other'];
-const List<String> list_age = <String>['18','19','20','21','22','23','24'];
+const List<String> list = <String>['Male', 'Female', 'Other'];
+const List<String> list_age = <String>[
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+  '24'
+];
 var dropdownValue_gender = list.first;
 var dropdownValue_age = list_age.first;
 
@@ -110,63 +116,71 @@ class _SignupPageState extends State<SignupPage> {
                   Row(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 18,),
+                          margin: EdgeInsets.only(
+                            left: 18,
+                          ),
                           child: DropdownButton<String>(
-                                                            
-                        value: dropdownValue,
-                        hint: Text("Gender"),
-                        iconSize: 30,
-                        
-                        icon: const Icon(Icons.arrow_downward),
-                        elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple,fontSize: 30),
-                        // underline: Container(
-                        //   height: 2,
-                        //   color: Colors.deepPurpleAccent,
-                        // ),
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            dropdownValue = value!;
-                          });
-                        },
-                        items: list.map<DropdownMenuItem<String>>((String value) 
-                        {return  DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      )),
+                            value: dropdownValue,
+                            //  
+                            hint: Text("Gender"),
+                            iconSize: 30,
+
+                            icon: const Icon(Icons.arrow_downward),
+                            elevation: 16,
+                            style: const TextStyle(
+                                color: Colors.deepPurple, fontSize: 30),
+                            // underline: Container(
+                            //   height: 2,
+                            //   color: Colors.deepPurpleAccent,
+                            // ),
+                            onChanged: (String? value) {
+                              // This is called when the user selects an item.
+                              setState(() {
+                                dropdownValue = value!;
+                              });
+                            },
+                            items: list
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          )),
                       SizedBox(
                         width: 120,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(right: 18,),
-                        child: DropdownButton<String>(                                                           
-                        value: dropdownValue,
-                        hint: Text("Age "),
-                        menuMaxHeight: 150,
-                        iconSize: 30,                        
-                        icon: const Icon(Icons.arrow_downward),
-                        elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple,fontSize: 30),
-                        // underline: Container(
-                        //   height: 2,
-                        //   color: Colors.deepPurpleAccent,
-                        // ),
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            dropdownValue_age = value!;
-                          });
-                        },
-                        items: list_age.map<DropdownMenuItem<String>>((String value) 
-                        {return  DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      )),
+                      // Container(
+                      //     margin: EdgeInsets.only(
+                      //       right: 18,
+                      //     ),
+                      //     child: DropdownButton<String>(
+                      //       value: dropdownValue,
+                      //       hint: Text("Age "),
+                      //       menuMaxHeight: 150,
+                      //       iconSize: 30,
+                      //       icon: const Icon(Icons.arrow_downward),
+                      //       elevation: 16,
+                      //       style: const TextStyle(
+                      //           color: Colors.deepPurple, fontSize: 30),
+                      //       // underline: Container(
+                      //       //   height: 2,
+                      //       //   color: Colors.deepPurpleAccent,
+                      //       // ),
+                      //       onChanged: (String? value) {
+                      //         // This is called when the user selects an item.
+                      //         setState(() {
+                      //           dropdownValue_age = value!;
+                      //         });
+                      //       },
+                      //       items: list_age
+                      //           .map<DropdownMenuItem<String>>((String value) {
+                      //         return DropdownMenuItem<String>(
+                      //           value: value,
+                      //           child: Text(value),
+                      //         );
+                      //       }).toList(),
+                      //     )),
                     ],
                   ),
                   Container(
@@ -182,7 +196,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                           return null;
                         },
-                        controller: firstName,
+                        controller: userFirstname,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -224,7 +238,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                           return null;
                         },
-                        controller: lastName,
+                        controller: userLastname,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -258,6 +272,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: TextFormField(
                         // enabled: false,
                         initialValue: "Adhaar Number",
+                        controller: userIdnumber,
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -291,7 +306,8 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        initialValue: "Email",
+                        controller: userEmail,
+                        initialValue: "jhon@gmail.com",
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -325,7 +341,7 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        initialValue: "Email",
+                        initialValue: "",
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -359,7 +375,8 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        initialValue: "Email",
+                        initialValue: "Jhone@gmail.com",
+                        controller: userPassword,
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -367,7 +384,7 @@ class _SignupPageState extends State<SignupPage> {
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(left: 20, top: 15, bottom: 15),
-                          labelText: str_e_mail,
+                          labelText: "Password",
                           labelStyle: TextStyle(
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
@@ -392,7 +409,8 @@ class _SignupPageState extends State<SignupPage> {
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
-                        initialValue: "Engineer",
+                        initialValue: "username",
+                        controller: userName,
                         cursorColor: gray_9d9d9d,
                         // style: TextStyle(color: Colors.grey),
                         keyboardType: TextInputType.emailAddress,
@@ -400,7 +418,7 @@ class _SignupPageState extends State<SignupPage> {
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(left: 20, top: 15, bottom: 15),
-                          labelText: "Profession",
+                          labelText: "Username",
                           labelStyle: TextStyle(
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
@@ -438,7 +456,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                           return null;
                         },
-                        controller: mobileNo,
+                        controller: userPhone,
                         maxLength: 10,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.number,
@@ -487,6 +505,8 @@ class _SignupPageState extends State<SignupPage> {
                                     content: Text('Processing Data')),
                               );
                             }
+
+                            userData();
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,
