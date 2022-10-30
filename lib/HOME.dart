@@ -209,31 +209,38 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ],
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/Giveride');
+                        },
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            setting,
-                            height: 22,
-                            color: Colors.white,
-                            width: 22,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            // str_setup,
-                            "Take a ride",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: sfpro_text_semibold),
-                          ),
-                        ],
+                      child: InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              setting,
+                              height: 22,
+                              color: Colors.white,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              // str_setup,
+                              "Take a ride",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/Takeride');
+                        },
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
@@ -250,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             width: 10,
                           ),
                           Text(
-                            str_call_transport,
+                            "Contact Us",
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.white,

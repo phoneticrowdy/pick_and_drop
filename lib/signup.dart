@@ -1,3 +1,7 @@
+// import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:date_field/date_field.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,24 +17,19 @@ class SignupPage extends StatefulWidget {
   _SignupPageState createState() => _SignupPageState();
 }
 
-const List<String> list = <String>['Male', 'Female', 'Other'];
-const List<String> list_age = <String>[
-  '18',
-  '19',
-  '20',
-  '21',
-  '22',
-  '23',
-  '24'
-];
-var dropdownValue_gender = list.first;
-var dropdownValue_age = list_age.first;
-
 final firstName = TextEditingController();
 final lastName = TextEditingController();
 final mobileNo = TextEditingController();
 final email = TextEditingController();
 var _formkey_editProfile = GlobalKey<FormState>();
+final List<String> genderItems = [
+  'Male',
+  'Female',
+];
+
+String? selectedValue;
+
+final _formKey = GlobalKey<FormState>();
 
 class _SignupPageState extends State<SignupPage> {
   String? dropdownValue;
@@ -113,75 +112,111 @@ class _SignupPageState extends State<SignupPage> {
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(
-                            left: 18,
-                          ),
-                          child: DropdownButton<String>(
-                            value: dropdownValue,
-                            //  
-                            hint: Text("Gender"),
-                            iconSize: 30,
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 30),
+                    child: DateTimeFormField(
+                      // decoration: const InputDecoration(
+                      //   hintStyle: TextStyle(color: Colors.black45),
+                      //   errorStyle: TextStyle(color: Colors.redAccent),
+                      //   border: OutlineInputBorder(),
+                      //   suffixIcon: Icon(Icons.event_note),
+                      //   labelText: 'Only time',
 
-                            icon: const Icon(Icons.arrow_downward),
-                            elevation: 16,
-                            style: const TextStyle(
-                                color: Colors.deepPurple, fontSize: 30),
-                            // underline: Container(
-                            //   height: 2,
-                            //   color: Colors.deepPurpleAccent,
-                            // ),
-                            onChanged: (String? value) {
-                              // This is called when the user selects an item.
-                              setState(() {
-                                dropdownValue = value!;
-                              });
-                            },
-                            items: list
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          )),
-                      SizedBox(
-                        width: 120,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                        labelText: "Date of Birth",
+                        labelStyle: TextStyle(
+                            fontSize: 12.5,
+                            fontFamily: sfpro_text_regular,
+                            color: black_163351),
+                        hintText: str_first_name,
+                        floatingLabelStyle: TextStyle(
+                            color: black_163351,
+                            fontFamily: sfpro_text_medium,
+                            fontSize: 14),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide:
+                                BorderSide(color: black_163351, width: 1)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide:
+                                BorderSide(color: gray_9d9d9d, width: 1)),
                       ),
-                      // Container(
-                      //     margin: EdgeInsets.only(
-                      //       right: 18,
-                      //     ),
-                      //     child: DropdownButton<String>(
-                      //       value: dropdownValue,
-                      //       hint: Text("Age "),
-                      //       menuMaxHeight: 150,
-                      //       iconSize: 30,
-                      //       icon: const Icon(Icons.arrow_downward),
-                      //       elevation: 16,
-                      //       style: const TextStyle(
-                      //           color: Colors.deepPurple, fontSize: 30),
-                      //       // underline: Container(
-                      //       //   height: 2,
-                      //       //   color: Colors.deepPurpleAccent,
-                      //       // ),
-                      //       onChanged: (String? value) {
-                      //         // This is called when the user selects an item.
-                      //         setState(() {
-                      //           dropdownValue_age = value!;
-                      //         });
-                      //       },
-                      //       items: list_age
-                      //           .map<DropdownMenuItem<String>>((String value) {
-                      //         return DropdownMenuItem<String>(
-                      //           value: value,
-                      //           child: Text(value),
-                      //         );
-                      //       }).toList(),
-                      //     )),
-                    ],
+
+                      mode: DateTimeFieldPickerMode.date,
+                      autovalidateMode: AutovalidateMode.always,
+                      validator: (e) => (e?.day ?? 0) == 1
+                          ? 'Please not the first day'
+                          : null,
+                      onDateSelected: (DateTime value) {
+                        print(value);
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 15, top: 30),
+                    child: DropdownButtonFormField2(
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                        labelStyle: TextStyle(
+                            fontSize: 12.5,
+                            fontFamily: sfpro_text_regular,
+                            color: black_163351),
+                        hintText: str_first_name,
+                        floatingLabelStyle: TextStyle(
+                            color: black_163351,
+                            fontFamily: sfpro_text_medium,
+                            fontSize: 14),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide:
+                                BorderSide(color: black_163351, width: 1)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            borderSide:
+                                BorderSide(color: gray_9d9d9d, width: 1)),
+                      ),
+                      isExpanded: true,
+                      hint: const Text(
+                        'Select Your Gender',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.black45,
+                      ),
+                      iconSize: 30,
+                      buttonHeight: 20,
+                      buttonPadding: const EdgeInsets.only(left: 0, right: 10),
+                      dropdownDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      items: genderItems
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Please select gender.';
+                        }
+                      },
+                      onChanged: (value) {
+                        //Do something when changing the item if you want.
+                      },
+                      onSaved: (value) {
+                        selectedValue = value.toString();
+                      },
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15, top: 30),

@@ -7,7 +7,7 @@ import 'signup.dart';
 var userId = 1010;
 var userDob = "2003/05/09";
 var userActive;
-var userGender = dropdownValue_gender;
+var userGender ;
 var userFirstname;
 var userLastname;
 var userEmail;
