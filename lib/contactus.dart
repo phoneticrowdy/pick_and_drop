@@ -1,8 +1,5 @@
 import 'package:contactus/contactus.dart';
 import 'package:flutter/material.dart';
-import 'package:pick_and_drop/main.dart';
-
-
 
 class Contactus extends StatelessWidget {
   @override
@@ -19,15 +16,13 @@ class Contactus extends StatelessWidget {
    taglineColor:Colors.amber,
 
           logo: AssetImage('images/crop.jpg'),
-          email: 'adoshi26.ad@gmail.com',
-          
-          phoneNumber: '+91123456789',
+          email: 'prasenjeetsingh10@gmail.com',          
+          phoneNumber: '+918933089770',
           dividerThickness: 2,
-          website: 'https://abhishekdoshi.godaddysites.com',
-          githubUserName: 'AbhishekDoshi26',
-          linkedinURL: 'https://www.linkedin.com/in/abhishek-doshi-520983199/',
-          tagLine: 'Flutter Developer',
-          twitterHandle: 'AbhishekDoshi26',
+          website: 'phoneticrowdy',
+          linkedinURL: 'https://www.linkedin.com/in/prasenjeet-singh-4b2361236',
+          tagLine: 'Service On The Way',
+          twitterHandle: 'Prasenjeet Singh',
         ),
       ),
     );

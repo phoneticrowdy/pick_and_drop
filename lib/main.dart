@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/routes.dart';
 import 'HOME.dart';
+import 'database.dart';
 // phoneticrodwy
 // hello
-//hey there
+//hey there`
+// bs
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  var database = LocalDatabase();
+  // await database.create_a_table(profileTable);
+  
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pick_and_drop/Apis.dart';
 import 'package:pick_and_drop/HOME.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/routes.dart';
+
+import 'Style/Constant.dart';
 // Anshu
 
 
@@ -16,6 +19,9 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+
+  var userloginreaction;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +44,7 @@ class _loginState extends State<login> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+               controller: nameController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -49,6 +56,7 @@ class _loginState extends State<login> {
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: TextField(
                 obscureText: true,
+                controller: passwordController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
@@ -70,9 +78,9 @@ class _loginState extends State<login> {
             ),
             Container(
               child: ElevatedButton(                
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => MyHomePage()));
+                onPressed: () {                 
+                  
+                  userLogin(context,nameController.text,passwordController.text);                                
                 },
                 child: Text(
                   'Login',

@@ -244,26 +244,29 @@ class _MyHomePageState extends State<MyHomePage> {
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            call,
-                            height: 22,
-                            width: 22,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Contact Us",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: sfpro_text_semibold),
-                          ),
-                        ],
+                      child: InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              call,
+                              height: 22,
+                              width: 22,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Contact Us",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        ),
+                        onTap: (){Navigator.pushNamed(context, '/Contactus');},
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),

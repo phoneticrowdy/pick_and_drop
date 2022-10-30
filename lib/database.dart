@@ -1,149 +1,220 @@
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
+import 'package:pick_and_drop/Apis.dart';
 import 'package:sqflite/sqflite.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
+import 'dart:async';
+import 'package:flutter/widgets.dart';
 
-void main() async {
-  // Avoid errors caused by flutter upgrade.
-  // Importing 'package:flutter/widgets.dart' is required.
-  WidgetsFlutterBinding.ensureInitialized();
-  // Open the database and store the reference.
-  final database = openDatabase(
-    // Set the path to the database. Note: Using the `join` function from the
-    // `path` package is best practice to ensure the path is correctly
-    // constructed for each platform.
-    join(await getDatabasesPath(), 'doggie_database.db'),
-    // When the database is first created, create a table to store dogs.
-    onCreate: (db, version) {
-      // Run the CREATE TABLE statement on the database.
-      return db.execute(
-        'CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
-      );
-    },
-    // Set the version. This executes the onCreate function and provides a
-    // path to perform database upgrades and downgrades.
-    version: 1,
-  );
 
-  // Define a function that inserts dogs into the database
-  Future<void> insertDog(Dog dog) async {
-    // Get a reference to the database.
-    final db = await database;
 
-    // Insert the Dog into the correct table. You might also specify the
-    // `conflictAlgorithm` to use in case the same dog is inserted twice.
-    //
-    // In this case, replace any previous data.
+
+class LocalData {
+  //coloumns...
+  var userId = '1001';
+  var userDob='2003-05-07';
+  var userActive="1";
+  var userGender='male';
+  var userFirstname='Anshu';
+  var userLastname="singh";
+  var userEmail="prase@gmail.com";
+  var userPhone="090909090";
+  var userIdnumber="9876654332";
+  var userPassword="hgg8g";
+  var userName="Anshu@";
+ 
+  Map<String, dynamic> toMap() {
+    return {
+      ' userId':  userId,
+      'userDob': userDob,
+      'userActive': userActive,
+      'userGender': userGender,
+      'userFirstname': userFirstname,
+      'userLastname': userLastname,
+      'userEmail': userEmail,
+      'userPhone': userPhone,
+      'userIdnumber': userIdnumber,
+      'userPassword': userPassword,
+      'userName':userName,
+      
+    };
+  }
+}
+
+class LocalDatabase {
+  // ignore: prefer_typing_uninitialized_variables
+
+  String table_name = 'user_data';
+  Future<Database> setPath() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    final database = openDatabase(
+      join(await getDatabasesPath(), 'pick&drop.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          'CREATE TABLE  $table_name (userId TEXT , userDob TEXT , userActive TEXT , userGender TEXT , userFirstname TEXT, userLastname Text ,userEmail Text, userPhone TEXT , userIdnumber TEXT , userPassword TEXT, userName TEXT)',
+        );
+      },
+      version: 1,
+    );
+    return database;
+  }
+
+  Future<void> insertData(LocalData localData) async {
+    final db = await setPath();
     await db.insert(
-      'dogs',
-      dog.toMap(),
+      table_name,
+      localData.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-  // A method that retrieves all the dogs from the dogs table.
-  Future<List<Dog>> dogs() async {
-    // Get a reference to the database.
-    final db = await database;
+  tableIsEmpty(LocalData localData) async {
+    var db = await setPath();
 
-    // Query the table for all The Dogs.
-    final List<Map<String, dynamic>> maps = await db.query('dogs');
-
-    // Convert the List<Map<String, dynamic> into a List<Dog>.
-    return List.generate(maps.length, (i) {
-      return Dog(
-        id: maps[i]['id'],
-        name: maps[i]['name'],
-        age: maps[i]['age'],
-      );
-    });
+    int? count = Sqflite.firstIntValue(
+        await db.rawQuery('SELECT COUNT(*) FROM $table_name'));
+    print("count:-" + count.toString());
+    if (count! < 1) {
+      insertData(localData);
+    }
+    print(count);
   }
 
-  Future<void> updateDog(Dog dog) async {
-    // Get a reference to the database.
-    final db = await database;
-
-    // Update the given Dog.
-    await db.update(
-      'dogs',
-      dog.toMap(),
-      // Ensure that the Dog has a matching id.
-      where: 'id = ?',
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [dog.id],
-    );
+  getData() async {
+    final db = await setPath();
+    final maps = await db.query(table_name);
+    print(maps);
+    // data_fetched = true;
+    return maps;
   }
 
-  Future<void> deleteDog(int id) async {
-    // Get a reference to the database.
-    final db = await database;
+  // Future<void> insert_to_user_profile(var values, table_name) async {
+  //   final db = await setPath();
+  //   count_data_set = await db.insert(
+  //     table_name,
+  //     values,
+  //     conflictAlgorithm: ConflictAlgorithm.replace,
+  //   );
+  //   // print(count_rides);
+  //   flag_rides++;
+  //   user_data_fetched = true;
+  // }
 
-    // Remove the Dog from the database.
+  // Future<void> insert_to_user_rides(var values, table_name) async {
+  //   final db = await setPath();
+  //   count_rides = await db.insert(
+  //     table_name,
+  //     values,
+  //     conflictAlgorithm: ConflictAlgorithm.replace,
+  //   );
+  //   // print(count_rides);
+  // }
+
+  Future<void> create_shift_details(table) async {
+    final db = await setPath();
+
+    await db.execute(
+        'CREATE TABLE IF NOT EXISTS $table (companyLocationId TEXT, shiftType TEXT,shiftTime TEXT,ID INTEGER PRIMARY KEY AUTOINCREMENT)');
+  }
+
+  getTableData(table_name) async {
+    final db = await setPath();
+    final maps = await db.query(table_name);
+    return maps;
+  }
+//   void _createTableCompanyV1(Batch batch) {
+//     batch.execute('DROP TABLE IF EXISTS Company');
+//     batch.execute('''CREATE TABLE Company (
+//     id INTEGER PRIMARY KEY AUTOINCREMENT,
+//     name TEXT
+// )''');
+//   }
+
+  check_existence(table) async {
+    final db = await setPath();
+    var data = await db.execute("SELECT * FROM $table;");
+    return data;
+  }
+
+  Future<void> create_a_table(table) async {
+    final db = await setPath();
+
+    await db.execute(
+        'CREATE TABLE IF NOT EXISTS $table (Salutation TEXT,firstName TEXT,lastName TEXT,email TEXT,mobileNo TEXT,city TEXT,siteName TEXT,userStatus INTEGER DEFAULT 1)');
+  }
+
+  Future<void> create_user_addresses(table) async {
+    final db = await setPath();
+
+    await db.execute(
+        'CREATE TABLE IF NOT EXISTS $table (userLocationId TEXT,userId TEXT,addressLabel TEXT,buildingName TEXT,locationByGoogle TEXT,userSubLocality2 TEXT,userSubLocality1 TEXT,userLocality TEXT,lat TEXT,long TEXT,roadDistance TEXT,straightDistance TEXT,isDefault TEXT)');
+  }
+
+  Future<void> deleteData() async {
+    final db = await setPath();
     await db.delete(
-      'dogs',
-      // Use a `where` clause to delete a specific dog.
-      where: 'id = ?',
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [id],
+      table_name,
+      // where: 'companyLocationId=?',
+      // whereArgs: [id],
     );
   }
 
-  // Create a Dog and add it to the dogs table
-  var fido = const Dog(
-    id: 0,
-    name: 'Fido',
-    age: 35,
-  );
+  Future<void> deleteUserData(table) async {
+    final db = await setPath();
+    await db.delete(
+      table,
+    );
+  }
 
-  await insertDog(fido);
+  // Future<void> updateData(rideId) async {
+  //   final db = await setPath();
+  //   int updateCount = await db.rawUpdate('''
+  //   UPDATE $ridesTable 
+  //   SET requestStatus = ?
+  //   WHERE rideId = ?
+  //   ''', [0, rideId]);
+  //   flag_modify = true;
+  //   print("update-returns:-" + updateCount.toString());
+  // }
 
-  // Now, use the method above to retrieve all the dogs.
-  print(await dogs()); // Prints a list that include Fido.
+  // Future<void> modifyRideData(rideId) async {
+  //   final db = await setPath();
+  //   int updateCount = await db.rawUpdate('''
+  //   UPDATE $ridesTable 
+  //   SET requestStatus = ? , loginLogoutTime=?, companyLocationId=?, userLocationId=?
+  //   WHERE rideId = ?
+  //   ''', [
+  //     1,
+  //     selected_ride_time,
+  //     comapany_location_id,
+  //     user_location_id,
+  //     rideId
+  //   ]);
+  //   ride_modified = true;
+  //   print("update-returns:-" + updateCount.toString());
+  // }
 
-  // Update Fido's age and save it to the database.
-  fido = Dog(
-    id: fido.id,
-    name: fido.name,
-    age: fido.age + 7,
-  );
-  await updateDog(fido);
+  // Future<void> deleteRide(rideId) async {
+  //   final db = await setPath();
+  //   var dmessage =
+  //       await db.delete(ridesTable, where: 'rideId=?', whereArgs: [rideId]);
+  //   print('DM:-' + dmessage.toString());
+  // }
 
-  // Print the updated results.
-  print(await dogs()); // Prints Fido with age 42.
+  Future<void> create_rides_table(table) async {
+    final db = await setPath();
 
-  // Delete Fido from the database.
-  await deleteDog(fido.id);
-
-  // Print the list of dogs (empty).
-  print(await dogs());
+    await db.execute(
+        'CREATE TABLE IF NOT EXISTS $table (rideId TEXT,type TEXT,date TEXT,loginDate TEXT,day TEXT,loginLogoutTime TEXT,requestStatus TEXT,rideOTP TEXT,pickupDateTime TEXT,pickupAddress Text , dropAddress TEXT,addressLabel TEXT,siteName TEXT,companyLocationId TEXT,userLocationId TEXT,companySubLocality2 TEXT,companySubLocality1 TEXT,companyLocality TEXT,userPremise TEXT,userSubLocality2 TEXT,userSubLocality1 TEXT,userLocality TEXT, driverFirstName TEXT, driverLastName TEXT, driverContactNo TEXT, vehicleType TEXT, vehicleNo TEXT, checkoutTime TEXT,homeLat TEXT,homeLong TEXT,companyLocationLat TEXT,companyLocationLong TEXT,driverId TEXT,checkoutDateTime TEXT,rideStatus TEXT)');
+  }
 }
 
-class Dog {
-  final int id;
-  final String name;
-  final int age;
+//   scheduled rides
 
-  const Dog({
-    required this.id,
-    required this.name,
-    required this.age,
-  });
-
-  // Convert a Dog into a Map. The keys must correspond to the names of the
-  // columns in the database.
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'age': age,
-    };
-  }
-
-  // Implement toString to make it easier to see information about
-  // each dog when using the print statement.
-  @override
-  String toString() {
-    return 'Dog{id: $id, name: $name, age: $age}';
-  }
+void perform() async {
+  var data = LocalData();
+  var database = LocalDatabase();
+  database.setPath();
+  await database.insertData(data);
+  print(await database.getData());
 }
