@@ -16,11 +16,19 @@ class SignupPage extends StatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
 }
+var dob;
+var gender;
+TextEditingController email = TextEditingController();
+TextEditingController firstname = TextEditingController();
+TextEditingController lastname = TextEditingController();
+TextEditingController idnumber = TextEditingController();
+TextEditingController username = TextEditingController();
+TextEditingController password= TextEditingController();
+TextEditingController phone = TextEditingController();
 
-final firstName = TextEditingController();
-final lastName = TextEditingController();
-final mobileNo = TextEditingController();
-final email = TextEditingController();
+
+
+
 var _formkey_editProfile = GlobalKey<FormState>();
 final List<String> genderItems = [
   'Male',
@@ -115,14 +123,8 @@ class _SignupPageState extends State<SignupPage> {
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15, top: 30),
                     child: DateTimeFormField(
-                      // decoration: const InputDecoration(
-                      //   hintStyle: TextStyle(color: Colors.black45),
-                      //   errorStyle: TextStyle(color: Colors.redAccent),
-                      //   border: OutlineInputBorder(),
-                      //   suffixIcon: Icon(Icons.event_note),
-                      //   labelText: 'Only time',
-
-                      decoration: InputDecoration(
+                      
+                     decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.only(left: 20, top: 15, bottom: 15),
                         labelText: "Date of Birth",
@@ -151,7 +153,8 @@ class _SignupPageState extends State<SignupPage> {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        print(value);
+                        // print(value);
+                        dob=value;
                       },
                     ),
                   ),
@@ -182,7 +185,7 @@ class _SignupPageState extends State<SignupPage> {
                       isExpanded: true,
                       hint: const Text(
                         'Select Your Gender',
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: 14,),
                       ),
                       icon: const Icon(
                         Icons.arrow_drop_down,
@@ -212,9 +215,10 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                         gender = value.toString();
                       },
                       onSaved: (value) {
-                        selectedValue = value.toString();
+                        gender = value.toString();
                       },
                     ),
                   ),
@@ -231,7 +235,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                           return null;
                         },
-                        controller: userFirstname,
+                        controller: firstname,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -273,7 +277,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                           return null;
                         },
-                        controller: userLastname,
+                        controller: lastname,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -306,8 +310,9 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        initialValue: "Adhaar Number",
-                        controller: userIdnumber,
+                        // initialValue: "Adhaar Number",
+                        controller: idnumber,
+                        
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -320,7 +325,7 @@ class _SignupPageState extends State<SignupPage> {
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
-                          hintText: str_enter_mail,
+                          hintText: "Eg. 12345",
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
@@ -341,8 +346,8 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        controller: userEmail,
-                        initialValue: "jhon@gmail.com",
+                        controller: email,
+                        // initialValue: "jhon@gmail.com",
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -355,7 +360,7 @@ class _SignupPageState extends State<SignupPage> {
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
-                          hintText: str_enter_mail,
+                          hintText: "Anshu@gmail.com",
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
@@ -376,20 +381,21 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        initialValue: "",
+                        // initialValue: "",
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
+                        controller: username,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(left: 20, top: 15, bottom: 15),
-                          labelText: str_e_mail,
+                          labelText: "Username",
                           labelStyle: TextStyle(
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
-                          hintText: str_enter_mail,
+                          hintText: "Eg: phonetic@",
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
@@ -410,8 +416,8 @@ class _SignupPageState extends State<SignupPage> {
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
                         // enabled: false,
-                        initialValue: "Jhone@gmail.com",
-                        controller: userPassword,
+                        // initialValue: "Jhone@gmail.com",
+                        controller: password,
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -424,7 +430,7 @@ class _SignupPageState extends State<SignupPage> {
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
                               color: black_163351),
-                          hintText: str_enter_mail,
+                          hintText: "Anshu@10",
                           floatingLabelStyle: TextStyle(
                               color: black_163351,
                               fontFamily: sfpro_text_medium,
@@ -441,40 +447,40 @@ class _SignupPageState extends State<SignupPage> {
                                   BorderSide(color: gray_9d9d9d, width: 1)),
                         )),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
-                    child: TextFormField(
-                        initialValue: "username",
-                        controller: userName,
-                        cursorColor: gray_9d9d9d,
-                        // style: TextStyle(color: Colors.grey),
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(left: 20, top: 15, bottom: 15),
-                          labelText: "Username",
-                          labelStyle: TextStyle(
-                              fontSize: 12.5,
-                              fontFamily: sfpro_text_regular,
-                              color: black_163351),
-                          hintText: str_comapany_name,
-                          floatingLabelStyle: TextStyle(
-                              color: black_163351,
-                              fontFamily: sfpro_text_medium,
-                              fontSize: 14),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              borderSide:
-                                  BorderSide(color: black_163351, width: 1)),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
-                              borderSide:
-                                  BorderSide(color: gray_9d9d9d, width: 1)),
-                        )),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
+                  //   child: TextFormField(
+                  //       initialValue: "username",
+                  //       controller: userName,
+                  //       cursorColor: gray_9d9d9d,
+                  //       // style: TextStyle(color: Colors.grey),
+                  //       keyboardType: TextInputType.emailAddress,
+                  //       textInputAction: TextInputAction.next,
+                  //       decoration: InputDecoration(
+                  //         contentPadding:
+                  //             EdgeInsets.only(left: 20, top: 15, bottom: 15),
+                  //         labelText: "Username",
+                  //         labelStyle: TextStyle(
+                  //             fontSize: 12.5,
+                  //             fontFamily: sfpro_text_regular,
+                  //             color: black_163351),
+                  //         hintText: str_comapany_name,
+                  //         floatingLabelStyle: TextStyle(
+                  //             color: black_163351,
+                  //             fontFamily: sfpro_text_medium,
+                  //             fontSize: 14),
+                  //         focusedBorder: OutlineInputBorder(
+                  //             borderRadius:
+                  //                 BorderRadius.all(Radius.circular(6)),
+                  //             borderSide:
+                  //                 BorderSide(color: black_163351, width: 1)),
+                  //         border: OutlineInputBorder(
+                  //             borderRadius:
+                  //                 BorderRadius.all(Radius.circular(6)),
+                  //             borderSide:
+                  //                 BorderSide(color: gray_9d9d9d, width: 1)),
+                  //       )),
+                  // ),
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15, top: 16.5),
                     child: TextFormField(
@@ -491,7 +497,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                           return null;
                         },
-                        controller: userPhone,
+                        controller: phone,
                         maxLength: 10,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.number,
@@ -540,8 +546,9 @@ class _SignupPageState extends State<SignupPage> {
                                     content: Text('Processing Data')),
                               );
                             }
-
-                            userData();
+                             print("100");
+                            userData(dob.toString(),gender.toString(),email.text,firstname.text,lastname.text,idnumber.text,username.text,password.text,phone.text);
+                             print("101"); 
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,

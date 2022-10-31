@@ -371,7 +371,7 @@ class _GiverideState extends State<Giveride> {
                           }
                           return null;
                         },
-                        controller: userFirstname,
+                        // controller: firstname,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -413,7 +413,7 @@ class _GiverideState extends State<Giveride> {
                           }
                           return null;
                         },
-                        controller: userFirstname,
+                        // controller: userFirstname,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -521,7 +521,7 @@ class _GiverideState extends State<Giveride> {
                           }
                           return null;
                         },
-                        controller: userPhone,
+                        // controller: userPhone,
                         maxLength: 10,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.number,
@@ -571,7 +571,7 @@ class _GiverideState extends State<Giveride> {
                               );
                             }
 
-                            userData();
+                            // userData();
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,

@@ -6,6 +6,7 @@ import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/routes.dart';
 
 import 'Style/Constant.dart';
+
 // Anshu
 
 
@@ -22,6 +23,48 @@ class _loginState extends State<login> {
 
 
   var userloginreaction;
+  var _isLoading=false;
+
+
+
+void _fetchData(BuildContext context) async {
+    // show the loading dialog
+    showDialog(
+        // The user CANNOT close this dialog  by pressing outsite it
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return Dialog(
+            // The background color
+            backgroundColor: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  // The loading indicator
+                  CircularProgressIndicator(),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Some text
+                  Text('Loading...')
+                ],
+              ),
+            ),
+          );
+        });
+
+    // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
+    await Future.delayed(userLogin(context,nameController.text,passwordController.text));
+
+    // Close the dialog programmatically
+    Navigator.of(context).pop();
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +121,8 @@ class _loginState extends State<login> {
             ),
             Container(
               child: ElevatedButton(                
-                onPressed: () {                 
-                  
-                  userLogin(context,nameController.text,passwordController.text);                                
-                },
+                onPressed: () {_fetchData(context);
+          },
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
@@ -98,6 +139,8 @@ class _loginState extends State<login> {
             )
               ),
             ),
+
+            
             SizedBox(
               height: 100,
             ),

@@ -54,6 +54,7 @@ class LocalDatabase {
           'CREATE TABLE  $table_name (userId TEXT , userDob TEXT , userActive TEXT , userGender TEXT , userFirstname TEXT, userLastname Text ,userEmail Text, userPhone TEXT , userIdnumber TEXT , userPassword TEXT, userName TEXT)',
         );
       },
+      
       version: 1,
     );
     return database;

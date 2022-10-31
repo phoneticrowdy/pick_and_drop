@@ -7,38 +7,27 @@ import 'package:pick_and_drop/signup.dart';
 import 'HOME.dart';
 import 'signup.dart';
 
-var userId = 1010;
-var userDob = "2003/05/09";
-var userActive;
-var userGender ;
-var userFirstname;
-var userLastname;
-var userEmail;
-var userPhone;
-var userIdnumber;
-var userPassword;
-var userName;
 
-userData() async {
+userData(dob,gender,email,firstname,lastname,idnumber,username,password,phone) async {
   http.Response response;
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/signup.php"),
       body: jsonEncode({
-        "userId": userId,
-        "userDob": userDob,
+        "userId": null,
+        "userDob": dob,
         "userActive": 1,
-        "userGender": userGender,
-        "userFirstname": userFirstname,
-        "userLastname": userLastname,
-        "userEmail": userEmail,
-        "userPhone": userPhone,
-        "userIdnumber": userIdnumber,
-        "userPassword": userPassword,
-        "userName": userName
+        "userGender": gender,
+        "userFirstname": firstname,
+        "userLastname": lastname,
+        "userEmail": email,
+        "userPhone": phone,
+        "userIdnumber":idnumber,
+        "userPassword": password,
+        "userName": username
       }));
-  print(userFirstname);
-  print(userGender);
+  print(firstname);
+
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     print(decodedResponse['message']);

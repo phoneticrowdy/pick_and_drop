@@ -373,7 +373,7 @@ class _TakerideState extends State<Takeride> {
                           }
                           return null;
                         },
-                        controller: userPhone,
+                        // controller: userPhone,
                         maxLength: 10,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.number,
@@ -423,7 +423,7 @@ class _TakerideState extends State<Takeride> {
                               );
                             }
 
-                            userData();
+                            // userData();
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,
