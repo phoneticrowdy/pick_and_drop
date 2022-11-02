@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/routes.dart';
 import 'HOME.dart';
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode (SystemUiMode.manual, overlays: []);
     return MaterialApp(
+      
       
       title: 'Pick & drop',
       debugShowCheckedModeBanner: false,

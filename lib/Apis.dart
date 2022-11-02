@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pick_and_drop/database.dart';
 import 'dart:convert';
-
-import 'package:pick_and_drop/signup.dart';
 import 'HOME.dart';
-import 'signup.dart';
 
 
-userData(dob,gender,email,firstname,lastname,idnumber,username,password,phone) async {
+userData(context,dob,gender,email,firstname,lastname,idnumber,username,password,phone) async {
   http.Response response;
   response = await http.post(
       Uri.parse(
@@ -30,10 +27,17 @@ userData(dob,gender,email,firstname,lastname,idnumber,username,password,phone) a
 
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
-    print(decodedResponse['message']);
+    if(decodedResponse['message']=="Successfully Signup!"){
+      print("hey boi");
+    userDataFetch('1000');
+      print("sucee");
+       Navigator.push(
+                       context, MaterialPageRoute(builder: (_) => const MyHomePage()));
+                  }
+  }
     return;
   }
-}
+
 
 
 
@@ -55,14 +59,10 @@ userLogin(context,username,password) async {
     if(decodedResponse['message']=="Successfully Login!"){
       print(decodedResponse['message']);
       userDataFetch('1000');
-      print("sucee");
        Navigator.push(
-                       context, MaterialPageRoute(builder: (_) => MyHomePage()));
+                       context, MaterialPageRoute(builder: (_) => const MyHomePage()));
                   }
       return true;    
-    
-   
-    
   }
 }
 
@@ -100,17 +100,11 @@ userDataFetch(userId) async {
 
    await database.insertData(localData);
    print(localData.userEmail);
-
-    
-    // if(decodedResponse['message']=="Successfully Login!"){
-    //   print(decodedResponse['message']);
-    //    Navigator.push(
-    //                    context, MaterialPageRoute(builder: (_) => MyHomePage()));
-    //               }
-    //   return true;    
-    
-   
-    
   }
   else{print("300");}
 }
+
+
+
+// take ride api
+// taker()
