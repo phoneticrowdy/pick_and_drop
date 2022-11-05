@@ -28,11 +28,64 @@ final List<String> VehicatTypeItems = ['Sedan', "Suv", "Bike", "Auto"];
 
 String? selectedValue;
 
+var Ridedateg;
+var Ridetimeg;
+var plocg;
+var dlocg;
+var vtypeg;
+var ppartnerg;
+TextEditingController vmodel= TextEditingController();
+TextEditingController vnumber = TextEditingController();
+TextEditingController phoneg= TextEditingController();
+
+
 final _formKey = GlobalKey<FormState>();
 
 class _GiverideState extends State<Giveride> {
   String? dropdownValue;
   bool isLayoutFirst = false;
+
+
+
+
+
+void _fetchData(BuildContext context) async {
+    // show the loading dialog
+    showDialog(
+        // The user CANNOT close this dialog  by pressing outsite it
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return Dialog(
+            // The background color
+            backgroundColor: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  // The loading indicator
+                  CircularProgressIndicator(),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Some text
+                  Text('Loading...')
+                ],
+              ),
+            ),
+          );
+        });
+
+    // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
+    await Future.delayed(giveride(context,Ridedateg.toString(),Ridetimeg.toString(),plocg.toString(),dlocg.toString(),vtypeg.toString(), ppartnerg.toString(),vmodel.text,vnumber.text,phoneg.text));
+
+    // Close the dialog programmatically
+    Navigator.of(context).pop();
+  }
+
+
+
 
   // String? value;
   @override
@@ -122,7 +175,7 @@ class _GiverideState extends State<Giveride> {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        print(value);
+                        Ridedateg=value;
                       },
                     ),
                   ),
@@ -165,7 +218,7 @@ class _GiverideState extends State<Giveride> {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        print(value);
+                        Ridetimeg=value;
                       },
                     ),
                   ),
@@ -226,9 +279,11 @@ class _GiverideState extends State<Giveride> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                        plocg=value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
+                         plocg=value;
                       },
                     ),
                   ),
@@ -289,9 +344,11 @@ class _GiverideState extends State<Giveride> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                        dlocg=value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
+                        dlocg=value;
                       },
                     ),
                   ),
@@ -352,9 +409,11 @@ class _GiverideState extends State<Giveride> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                        vtypeg=value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
+                        vtypeg=value;
                       },
                     ),
                   ),
@@ -371,7 +430,7 @@ class _GiverideState extends State<Giveride> {
                           }
                           return null;
                         },
-                        // controller: firstname,
+                        controller: vmodel,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -413,7 +472,7 @@ class _GiverideState extends State<Giveride> {
                           }
                           return null;
                         },
-                        // controller: userFirstname,
+                       controller: vnumber,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -499,9 +558,11 @@ class _GiverideState extends State<Giveride> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                        ppartnerg=value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
+                        ppartnerg=value;
                       },
                     ),
                   ),
@@ -521,7 +582,7 @@ class _GiverideState extends State<Giveride> {
                           }
                           return null;
                         },
-                        // controller: userPhone,
+                        controller: phoneg,
                         maxLength: 10,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.number,
@@ -570,8 +631,8 @@ class _GiverideState extends State<Giveride> {
                                     content: Text('Processing Data')),
                               );
                             }
-
-                            // userData();
+                          _fetchData(context);
+                           
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,

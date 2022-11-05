@@ -1,7 +1,6 @@
 // import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:date_field/date_field.dart';
-
+import 'package:date_field/date_field.dart'; 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,11 +26,61 @@ final List<String> destinationLocationItems = ['dharmsala', 'khajanchi'];
 
 String? selectedValue;
 
+
+
+var Ridedate;
+var Ridetime;
+var pickloc;
+var droploc;
+var prepartner;
+TextEditingController mobilenot = TextEditingController();
+
 final _formKey = GlobalKey<FormState>();
 
 class _TakerideState extends State<Takeride> {
   String? dropdownValue;
   bool isLayoutFirst = false;
+
+
+
+void _fetchData(BuildContext context) async {
+    // show the loading dialog
+    showDialog(
+        // The user CANNOT close this dialog  by pressing outsite it
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return Dialog(
+            // The background color
+            backgroundColor: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  // The loading indicator
+                  CircularProgressIndicator(),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Some text
+                  Text('Loading...')
+                ],
+              ),
+            ),
+          );
+        });
+
+    // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
+    await Future.delayed(takeride(Ridedate.toString(),Ridetime.toString(),pickloc,droploc,prepartner,mobilenot.text));
+
+    // Close the dialog programmatically
+    Navigator.of(context).pop();
+  }
+
+
+
+
 
   // String? value;
   @override
@@ -85,12 +134,7 @@ class _TakerideState extends State<Takeride> {
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15, top: 30),
                     child: DateTimeFormField(
-                      // decoration: const InputDecoration(
-                      //   hintStyle: TextStyle(color: Colors.black45),
-                      //   errorStyle: TextStyle(color: Colors.redAccent),
-                      //   border: OutlineInputBorder(),
-                      //   suffixIcon: Icon(Icons.event_note),
-                      //   labelText: 'Only time',
+                     
 
                       decoration: InputDecoration(
                         contentPadding:
@@ -121,7 +165,8 @@ class _TakerideState extends State<Takeride> {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        print(value);
+                        
+                        Ridedate=value.toString();
                       },
                     ),
                   ),
@@ -164,7 +209,7 @@ class _TakerideState extends State<Takeride> {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        print(value);
+                        Ridetime=value.toString();
                       },
                     ),
                   ),
@@ -225,10 +270,11 @@ class _TakerideState extends State<Takeride> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                        pickloc=value; 
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
-                      },
+                        pickloc=value;                      },
                     ),
                   ),
                   Container(
@@ -288,9 +334,11 @@ class _TakerideState extends State<Takeride> {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
+                        droploc=value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
+                        droploc=value;
                       },
                     ),
                   ),
@@ -350,10 +398,12 @@ class _TakerideState extends State<Takeride> {
                         }
                       },
                       onChanged: (value) {
+                        prepartner=value;
                         //Do something when changing the item if you want.
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
+                        prepartner=value;
                       },
                     ),
                   ),
@@ -373,7 +423,7 @@ class _TakerideState extends State<Takeride> {
                           }
                           return null;
                         },
-                        // controller: userPhone,
+                        controller: mobilenot,
                         maxLength: 10,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.number,
@@ -421,9 +471,8 @@ class _TakerideState extends State<Takeride> {
                                 const SnackBar(
                                     content: Text('Processing Data')),
                               );
-                            }
-
-                            // userData();
+                            } _fetchData(context);
+                            
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,
@@ -445,7 +494,7 @@ class _TakerideState extends State<Takeride> {
               ),
             ),
           ),
-        ),
+        ), 
       ),
     );
   }
