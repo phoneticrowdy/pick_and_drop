@@ -6,3 +6,16 @@ const String sfpro_text_medium = "sfPro Text Medium";
 const String sfpro_text_regular = "Sfpro Text Regular";
 const String sfpro_text_semibold = "Sfpro Text Semibold";
 
+
+
+var userloginreaction;
+
+
+List userDetails=[];
+var datalen;
+
+String Name_user="";
+
+
+
+

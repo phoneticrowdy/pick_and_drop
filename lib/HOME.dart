@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pick_and_drop/Style/Constant.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/Style/my_strings.dart';
-import 'package:pick_and_drop/routes.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -19,8 +16,39 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: bg_456999,
         appBar: AppBar(
-          title: Text("Home"),
+          title: Text(
+            "Home",
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.call,
+                color: Colors.black,
+              ),
+              label: 'Calls',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.camera,
+                color: Colors.black,
+              ),
+              label: 'Camera',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.chat,
+                color: Colors.black,
+              ),
+              label: 'Chats',
+            ),
+          ],
         ),
         drawer: Drawer(
             backgroundColor: btn_black_0b0b0b,
@@ -62,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Mr. Anshu Singh",
+                              Name_user,
                               style: TextStyle(
                                   fontSize: 18.3,
                                   color: Colors.white,
@@ -123,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         )),
                     onTap: () {
-                      Navigator.pushNamed(context, '/addAddress');
+                      Navigator.pushNamed(context, '/signup');
                     },
                   ),
                   Container(
@@ -181,54 +209,64 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ],
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/Giveride');
+                        },
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            setting,
-                            height: 22,
-                            color: Colors.white,
-                            width: 22,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            // str_setup,
-                            "Take a ride",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: sfpro_text_semibold),
-                          ),
-                        ],
+                      child: InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              setting,
+                              height: 22,
+                              color: Colors.white,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              // str_setup,
+                              "Take a ride",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/Takeride');
+                        },
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            call,
-                            height: 22,
-                            width: 22,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            str_call_transport,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: sfpro_text_semibold),
-                          ),
-                        ],
+                      child: InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              call,
+                              height: 22,
+                              width: 22,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Contact Us",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        ),
+                        onTap: (){Navigator.pushNamed(context, '/Contactus');},
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
@@ -285,8 +323,125 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   )
-                ])
-            // body: Center(child: Text("hey"),),
-            ));
+                ])),
+        body: Center(
+          child: Column(children: [
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 0),
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
+                  color: Color.fromARGB(255, 229, 200, 200)),
+              height: 200,
+              width: double.infinity,
+              // color: const Color.fromARGB(255, 231, 226, 214),
+              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+              child: const Center(child: Text("hey there")),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(25)),
+                        color: Color.fromARGB(255, 229, 200, 200)),
+                    padding: const EdgeInsets.all(10),
+                    child: Center(
+                        child: Text("Hello",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Color.fromARGB(255, 116, 175, 147)))),
+                    width: 80,
+                    height: 80,
+                  ),
+                  onTap: () {
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => const page2()));
+                  },
+                ),
+                SizedBox(
+                  width: 80,
+                ),
+                InkWell(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(25)),
+                        color: Color.fromARGB(255, 229, 200, 200)),
+                    child: Center(
+                        child: Text("hello",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Color.fromARGB(255, 173, 205, 190)))),
+                    width: 80,
+                    height: 80,
+                  ),
+                  onTap: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => const page2()),
+                    // );
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 80,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(25)),
+                          color: Color.fromARGB(255, 229, 200, 200)),
+                      child: Center(
+                          child: Text("hello",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 110, 157, 144)))),
+                      width: 80,
+                      height: 80,
+                    ),
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const page2()));
+                    }),
+                SizedBox(
+                  width: 80,
+                ),
+                InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(25)),
+                          color: Color.fromARGB(255, 229, 200, 200)),
+                      child: Center(
+                          child: Text("hello",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 237, 239, 238)))),
+                      width: 80,
+                      height: 80,
+                    ),
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const page2()));
+                    }),
+              ],
+            ),
+          ]),
+        ));
   }
 }
