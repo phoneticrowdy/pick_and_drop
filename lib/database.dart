@@ -71,7 +71,6 @@ class LocalDatabase {
 
   tableIsEmpty(LocalData localData) async {
     var db = await setPath();
-
     int? count = Sqflite.firstIntValue(
         await db.rawQuery('SELECT COUNT(*) FROM $table_name'));
     print("count:-" + count.toString());

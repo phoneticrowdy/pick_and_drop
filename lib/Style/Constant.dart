@@ -11,6 +11,10 @@ const String sfpro_text_semibold = "Sfpro Text Semibold";
 var userloginreaction;
 
 
+List userDetails=[];
+var datalen;
+
+String Name_user="";
 
 
 

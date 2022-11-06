@@ -25,7 +25,6 @@ userData(context,dob,gender,email,firstname,lastname,idnumber,username,password,
         "userName": username
       }));
   print(firstname);
-
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     if(decodedResponse['message']=="Successfully Signup!"){
@@ -98,8 +97,9 @@ userDataFetch(userId) async {
     localData.userIdnumber = data['userIdnumber'].toString();
     localData.userPassword = data['userPassword '].toString();
     localData.userName= data['userName'].toString();
-
-   await database.insertData(localData);
+   
+   await database.tableIsEmpty(localData);
+  //  await database.insertData(localData);
    print(localData.userEmail);
   }
   else{print("300");}
@@ -109,34 +109,30 @@ userDataFetch(userId) async {
 
 // take ride api
 
-takeride(Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot) async {
+takeride(context,Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot) async {
   print("hey boi take ride");
-  http.Response response;
-  
+  http.Response response;  
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/takeride.php"),
-      body: jsonEncode({     
-       
+      body: jsonEncode({            
   "userId":null,
   "userPhone":mobilenot,
   "preferredPartner":prepartner,
   "pickupLocationId":pickloc,
   "destinationLocationId":droploc,
   "RideTime":Ridetime,
-  "RideDate":Ridedate
- 
+  "RideDate":Ridedate 
       }));
    if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     print(decodedResponse['message']);
     fetchride(Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot);
-    // if(decodedResponse['message']=="Successfully Login!"){
-    //   print(decodedResponse['message']);
-    //   userDataFetch('1000');
-    //    Navigator.push(
-    //                    context, MaterialPageRoute(builder: (_) => const MyHomePage()));
-    //               }
+    if(decodedResponse['message']=="data recieved"){
+      print(decodedResponse['message']);
+      userDataFetch('1000');
+       Navigator.pushNamed(context, '');
+                  }
       return true;    
   }
 }
@@ -144,7 +140,6 @@ takeride(Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot) async {
 // giveride Api
 
 giveride(context,Ridedateg,Ridetimeg,plocg,dlocg,vtypeg, ppartnerg,vmodel,vnumber,phoneg) async {
-  print("hey boi give ride");
   http.Response response;  
   response = await http.post(
       Uri.parse(

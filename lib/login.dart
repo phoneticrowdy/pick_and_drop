@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Apis.dart';
-import 'package:pick_and_drop/HOME.dart';
+
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
-import 'package:pick_and_drop/routes.dart';
 
-import 'Style/Constant.dart';
 
 // Anshu
 
@@ -142,9 +140,22 @@ void _fetchData(BuildContext context) async {
 
             
             SizedBox(
-              height: 100,
+              height: 120,
             ),
-            Text('New User? Create Account')
+            Container(
+              
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  
+                  Text("New User ?    "),
+                  InkWell(
+                    child: Text('Create an Account',style: TextStyle(color: Colors.lightBlue),),
+                    onTap:(){Navigator.pushNamed(context, '/signup');},
+                  )
+                ],
+              )            
+            )             
           ],
         ),
       ),

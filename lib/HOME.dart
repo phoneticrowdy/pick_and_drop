@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Mr. Anshu Singh",
+                              Name_user,
                               style: TextStyle(
                                   fontSize: 18.3,
                                   color: Colors.white,
