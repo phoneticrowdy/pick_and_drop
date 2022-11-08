@@ -7,6 +7,8 @@ import 'package:pick_and_drop/rides.dart';
 import 'package:pick_and_drop/login.dart';
 import 'package:pick_and_drop/signup.dart';
 import 'package:pick_and_drop/take%20ride.dart';
+import 'package:pick_and_drop/wait.dart';
+import 'package:pick_and_drop/walkthrough.dart';
 
 import 'booked.dart';
 import 'give ride.dart';
@@ -16,6 +18,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/login':
       {
         return MaterialPageRoute(builder: (context) => login());
+      }
+    case '/wait':
+      {
+        return MaterialPageRoute(builder: (context) => wait());
       }
     case '/listview':
       {
@@ -48,6 +54,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/booked':
       {
         return MaterialPageRoute(builder: (context) => Booked());
+      }
+    case '/walk':
+      {
+        return MaterialPageRoute(builder: (context) => WalkthroughPager());
       }
     default:
       {

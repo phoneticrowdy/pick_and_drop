@@ -60,11 +60,16 @@ class _loginState extends State<login> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: pink_ff5465,
+        toolbarHeight: 100,
         title: Text("Login Page"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 40,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 0),
               child: Center(
@@ -104,7 +109,7 @@ class _loginState extends State<login> {
               )),
             ),
             SizedBox(
-              height: 50,
+              height: 40,
             ),
             Container(
               child: ElevatedButton(
@@ -116,10 +121,10 @@ class _loginState extends State<login> {
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: pink_ff5465,
+                    primary: Colors.black,
                     onPrimary: Colors.white,
                     elevation: 0,
-                    padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 13),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                       // side: BorderSide(color: skygreen_24d39e, width: 0),
@@ -127,7 +132,7 @@ class _loginState extends State<login> {
                   )),
             ),
             SizedBox(
-              height: 120,
+              height: 20,
             ),
             Container(
                 child: Row(

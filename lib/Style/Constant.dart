@@ -10,3 +10,7 @@ var userloginreaction;
 List userDetails = [];
 var datalen = 0;
 String Name_user = "Hello Sir";
+var ride;
+var startpoint;
+var droppoint;
+var flag;

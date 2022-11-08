@@ -156,7 +156,35 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         )),
                     onTap: () {
-                      Navigator.pushNamed(context, '/ridedetails');
+                      Navigator.pushNamed(context, '/walk');
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                        margin: EdgeInsets.only(left: 18.3, top: 32.3),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              setting,
+                              height: 22,
+                              color: Colors.white,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "wait",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        )),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/wait');
                     },
                   ),
                   InkWell(
@@ -358,7 +386,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           var database = LocalDatabase();
                           database.deleteData();
-                          initState();
+                          initState() {}
+                          ;
+                          Navigator.pushNamed(context, '/login');
                         },
                       )),
                   Expanded(

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:pick_and_drop/database.dart';
 import 'dart:convert';
 import 'HOME.dart';
+import 'Style/Constant.dart';
 
 // Signup Api
 userData(context, dob, gender, email, firstname, lastname, idnumber, username,
@@ -29,7 +30,7 @@ userData(context, dob, gender, email, firstname, lastname, idnumber, username,
     var decodedResponse = json.decode(response.body);
     if (decodedResponse['message'] == "Successfully Signup!") {
       print("hey boi");
-      userDataFetch('1000');
+      userDataFetch(email, password);
       print("sucee");
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const MyHomePage()));
@@ -53,7 +54,7 @@ userLogin(context, username, password) async {
 
     if (decodedResponse['message'] == "Successfully Login!") {
       print(decodedResponse['message']);
-      userDataFetch('1000');
+      userDataFetch(username, password);
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const MyHomePage()));
     }
@@ -65,14 +66,14 @@ userLogin(context, username, password) async {
 
 var localData = LocalData();
 var data;
-userDataFetch(userId) async {
+userDataFetch(email, password) async {
   http.Response response;
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/fetchUD.php"),
-      body: jsonEncode({
-        "userId": userId,
-      })) as http.Response;
+      body:
+          jsonEncode({"userEmail": email, "userPassword": password})) as http
+      .Response;
   print("fetching");
   if (response.statusCode == 200) {
     var database = LocalDatabase();
@@ -120,10 +121,9 @@ takeride(context, Ridedate, Ridetime, pickloc, droploc, prepartner,
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     print(decodedResponse['message']);
-    fetchride(Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot);
     if (decodedResponse['message'] == "data recieved") {
-      // userDataFetch('1000');
-      Navigator.pushNamed(context, '');
+      fetchride(
+          context, Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot);
     }
     return true;
   }
@@ -153,8 +153,7 @@ giveride(context, Ridedateg, Ridetimeg, plocg, dlocg, vtypeg, ppartnerg, vmodel,
     print(decodedResponse['message']);
     if (decodedResponse['message'] == "data recieved") {
       print(decodedResponse['message']);
-      userDataFetch('1000');
-      Navigator.pushNamed(context, '');
+      Navigator.pushNamed(context, '/wait');
     }
     return true;
   }
@@ -162,8 +161,10 @@ giveride(context, Ridedateg, Ridetimeg, plocg, dlocg, vtypeg, ppartnerg, vmodel,
 
 // fetch ride or algo
 
-fetchride(Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot) async {
+fetchride(context, Ridedate, Ridetime, pickloc, droploc, prepartner,
+    mobilenot) async {
   http.Response response;
+  print("object");
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/algo.php"),
@@ -177,7 +178,9 @@ fetchride(Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot) async {
       }));
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
-    print(decodedResponse['message']);
+    ride = decodedResponse;
+    print(ride);
+    Navigator.pushNamed(context, '/listview');
     // if(decodedResponse['message']=="Successfully Login!"){
     //   print(decodedResponse['message']);
     //   userDataFetch('1000');

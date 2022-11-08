@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pick_and_drop/Style/Constant.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
-
+import 'package:sprintf/sprintf.dart';
 // Anshu
 
 class Rides extends StatefulWidget {
@@ -47,6 +48,11 @@ class _RidesState extends State<Rides> {
     Navigator.of(context).pop();
   }
 
+  //  String sentence1 = sprintf('Sends %2.2f seconds ago.', [seconds]);
+
+  // String sentence2 = sprintf(
+  // '%s To %s                                      %s-%s      ', [ride[$i]['']]);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +63,7 @@ class _RidesState extends State<Rides> {
           title: Text("Rides Page"),
         ),
         body: ListView.builder(
-            itemCount: 5,
+            itemCount: ride.length,
             itemBuilder: (context, i) => Container(
                   margin: EdgeInsets.only(left: 15, right: 15, bottom: 15),
                   child: Column(
@@ -88,13 +94,15 @@ class _RidesState extends State<Rides> {
                                   flex: 2,
                                   child: ListTile(
                                     title: Text(
-                                        'Anshu Singh                         Padari - khajanchi'),
-                                    subtitle: Text('9:15AM-10:55AM'),
+                                        ' ${ride[i]['vehicalMode']}                               ${ride[i]['startingLocationId']}   -TO-   ${ride[i]['destinationLocationId']}'),
+                                    subtitle:
+                                        Text('${ride[i]['RideTime']}-10:00:00'),
                                     // trailing: Icon(Icons.more_vert),
                                     isThreeLine: true,
                                     onTap: () {
                                       Navigator.pushNamed(
                                           context, '/ridedetails');
+                                      flag = i;
                                     },
                                   ),
                                 ),

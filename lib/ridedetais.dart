@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 
+import 'Style/Constant.dart';
+
 // Anshu
 
 class Ridedetails extends StatefulWidget {
@@ -62,7 +64,7 @@ class _RidedetailsState extends State<Ridedetails> {
             padding: const EdgeInsets.all(3.0),
             child: Column(children: [
               Text(
-                "Mr. Anshu Singh",
+                "Mr.${ride[flag]['vehicalMode']}",
                 style: TextStyle(
                   fontSize: 34,
                   color: Color.fromARGB(255, 194, 63, 63),
@@ -80,14 +82,14 @@ class _RidedetailsState extends State<Ridedetails> {
                       child: Column(
                     children: [
                       Text(
-                        "Khajanchi",
+                        "${ride[flag]['startingLocationId']}",
                         style: TextStyle(
                           // fontSize: ,
                           color: Colors.black,
                         ),
                       ),
                       Text(
-                        "09:15 AM",
+                        "${ride[flag]['RideTime']}",
                         style: TextStyle(
                           // fontSize: 20,
                           color: Colors.black,
@@ -104,12 +106,12 @@ class _RidedetailsState extends State<Ridedetails> {
                       child: Column(
                     children: [
                       Text(
-                        "Khajanchi",
+                        "${ride[flag]['destinationLocationId']}",
                         style: TextStyle(
                             // fontSize: 20,
                             color: Colors.black),
                       ),
-                      Text("09:15 AM",
+                      Text("10:00 AM",
                           style: TextStyle(
                               // fontSize: 20,
                               color: Colors.black))
@@ -122,7 +124,7 @@ class _RidedetailsState extends State<Ridedetails> {
               ),
               Container(
                   child: Text(
-                "Mobile No :- 8933089770",
+                "Mobile No :- ${ride[flag]['vehicalNumber']}",
                 style: TextStyle(
                   fontSize: 20,
                   color: Color.fromARGB(255, 219, 42, 10),

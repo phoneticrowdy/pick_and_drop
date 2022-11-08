@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 
+import 'Style/Constant.dart';
+
 // Anshu
 
 class Booked extends StatefulWidget {
@@ -90,9 +92,9 @@ class _BookedState extends State<Booked> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(
+                  ListTile(
                     leading: Icon(Icons.person, size: 45),
-                    title: Text('MR. Sonu Nigam'),
+                    title: Text("MR. ${ride[flag]['vehicalMode']}"),
                     subtitle: Text('Ride Partner'),
                   ),
                 ],
@@ -102,9 +104,9 @@ class _BookedState extends State<Booked> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(
+                  ListTile(
                     leading: Icon(Icons.location_city, size: 45),
-                    title: Text('Khajanchi'),
+                    title: Text('${ride[flag]['startingLocationId']}'),
                     subtitle: Text('Pickup Point'),
                   ),
                 ],
@@ -114,9 +116,9 @@ class _BookedState extends State<Booked> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(
+                  ListTile(
                     leading: Icon(Icons.location_city_outlined, size: 45),
-                    title: Text('Padari bazzar'),
+                    title: Text('${ride[flag]['destinationLocationId']}'),
                     subtitle: Text('Drop Point'),
                   ),
                 ],
@@ -126,9 +128,9 @@ class _BookedState extends State<Booked> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(
+                  ListTile(
                     leading: Icon(Icons.time_to_leave, size: 45),
-                    title: Text('9:15 AM'),
+                    title: Text('${ride[flag]['RideTime']}'),
                     subtitle: Text('Pickup Time'),
                   ),
                 ],

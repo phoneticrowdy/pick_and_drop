@@ -34,10 +34,9 @@ var plocg;
 var dlocg;
 var vtypeg;
 var ppartnerg;
-TextEditingController vmodel= TextEditingController();
+TextEditingController vmodel = TextEditingController();
 TextEditingController vnumber = TextEditingController();
-TextEditingController phoneg= TextEditingController();
-
+TextEditingController phoneg = TextEditingController();
 
 final _formKey = GlobalKey<FormState>();
 
@@ -45,11 +44,7 @@ class _GiverideState extends State<Giveride> {
   String? dropdownValue;
   bool isLayoutFirst = false;
 
-
-
-
-
-void _fetchData(BuildContext context) async {
+  void _fetchData(BuildContext context) async {
     // show the loading dialog
     showDialog(
         // The user CANNOT close this dialog  by pressing outsite it
@@ -78,14 +73,21 @@ void _fetchData(BuildContext context) async {
         });
 
     // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
-    await Future.delayed(giveride(context,Ridedateg.toString(),Ridetimeg.toString(),plocg.toString(),dlocg.toString(),vtypeg.toString(), ppartnerg.toString(),vmodel.text,vnumber.text,phoneg.text));
+    await Future.delayed(giveride(
+        context,
+        Ridedateg.toString(),
+        Ridetimeg.toString(),
+        plocg.toString(),
+        dlocg.toString(),
+        vtypeg.toString(),
+        ppartnerg.toString(),
+        vmodel.text,
+        vnumber.text,
+        phoneg.text));
 
     // Close the dialog programmatically
     Navigator.of(context).pop();
   }
-
-
-
 
   // String? value;
   @override
@@ -175,7 +177,7 @@ void _fetchData(BuildContext context) async {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        Ridedateg=value;
+                        Ridedateg = value;
                       },
                     ),
                   ),
@@ -218,7 +220,7 @@ void _fetchData(BuildContext context) async {
                           ? 'Please not the first day'
                           : null,
                       onDateSelected: (DateTime value) {
-                        Ridetimeg=value;
+                        Ridetimeg = value;
                       },
                     ),
                   ),
@@ -279,11 +281,11 @@ void _fetchData(BuildContext context) async {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
-                        plocg=value;
+                        plocg = value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
-                         plocg=value;
+                        plocg = value;
                       },
                     ),
                   ),
@@ -344,11 +346,11 @@ void _fetchData(BuildContext context) async {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
-                        dlocg=value;
+                        dlocg = value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
-                        dlocg=value;
+                        dlocg = value;
                       },
                     ),
                   ),
@@ -391,8 +393,8 @@ void _fetchData(BuildContext context) async {
                       dropdownDecoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      items: startingLocationItems
-                          .map((item) => DropdownMenuItem<String>(
+                      items: VehicatTypeItems.map(
+                          (item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Text(
                                   item,
@@ -400,8 +402,7 @@ void _fetchData(BuildContext context) async {
                                     fontSize: 14,
                                   ),
                                 ),
-                              ))
-                          .toList(),
+                              )).toList(),
                       validator: (value) {
                         if (value == null) {
                           return 'Please select pickup Location .';
@@ -409,11 +410,11 @@ void _fetchData(BuildContext context) async {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
-                        vtypeg=value;
+                        vtypeg = value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
-                        vtypeg=value;
+                        vtypeg = value;
                       },
                     ),
                   ),
@@ -437,7 +438,7 @@ void _fetchData(BuildContext context) async {
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(left: 20, top: 15, bottom: 15),
-                          labelText: "Vehical Model",
+                          labelText: "Your Name",
                           labelStyle: TextStyle(
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
@@ -466,20 +467,20 @@ void _fetchData(BuildContext context) async {
                           if (value == null || value.isEmpty) {
                             return 'Please enter first name';
                           }
-                          if (!RegExp(r"[a-zA-Z]").hasMatch(value) ||
-                              RegExp(r"[0-9]").hasMatch(value)) {
-                            return 'Please enter valid first name';
-                          }
+                          // if (!RegExp(r"[a-zA-Z]").hasMatch(value) ||
+                          //     RegExp(r"[0-9]").hasMatch(value)) {
+                          //   return 'Please enter valid first name';
+                          // }
                           return null;
                         },
-                       controller: vnumber,
+                        controller: vnumber,
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(left: 20, top: 15, bottom: 15),
-                          labelText: "Vehical Number",
+                          labelText: "Mobile Number",
                           labelStyle: TextStyle(
                               fontSize: 12.5,
                               fontFamily: sfpro_text_regular,
@@ -558,11 +559,11 @@ void _fetchData(BuildContext context) async {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
-                        ppartnerg=value;
+                        ppartnerg = value;
                       },
                       onSaved: (value) {
                         selectedValue = value.toString();
-                        ppartnerg=value;
+                        ppartnerg = value;
                       },
                     ),
                   ),
@@ -631,8 +632,7 @@ void _fetchData(BuildContext context) async {
                                     content: Text('Processing Data')),
                               );
                             }
-                          _fetchData(context);
-                           
+                            _fetchData(context);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,
