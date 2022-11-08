@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pick_and_drop/Apis.dart';
 import 'package:pick_and_drop/Style/Constant.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 import 'package:pick_and_drop/Style/my_strings.dart';
+
+import 'database.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -125,6 +128,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ],
                     ),
+                  ),
+                  InkWell(
+                    child: Container(
+                        margin: EdgeInsets.only(left: 18.3, top: 32.3),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              setting,
+                              height: 22,
+                              color: Colors.white,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "List View",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        )),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/listview');
+                    },
                   ),
                   InkWell(
                     child: Container(
@@ -266,30 +297,39 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ],
                         ),
-                        onTap: (){Navigator.pushNamed(context, '/Contactus');},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/Contactus');
+                        },
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 18.3, top: 32.3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            logout,
-                            height: 22,
-                            color: Colors.white,
-                            width: 22,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            str_logout,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: sfpro_text_semibold),
-                          ),
-                        ],
+                      child: InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              logout,
+                              height: 22,
+                              color: Colors.white,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              str_logout,
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          var database = LocalDatabase();
+                          database.deleteData();
+                          initState();
+                        },
                       )),
                   Expanded(
                     child: Align(

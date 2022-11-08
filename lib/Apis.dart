@@ -4,9 +4,9 @@ import 'package:pick_and_drop/database.dart';
 import 'dart:convert';
 import 'HOME.dart';
 
-
 // Signup Api
-userData(context,dob,gender,email,firstname,lastname,idnumber,username,password,phone) async {
+userData(context, dob, gender, email, firstname, lastname, idnumber, username,
+    password, phone) async {
   http.Response response;
   response = await http.post(
       Uri.parse(
@@ -20,71 +20,64 @@ userData(context,dob,gender,email,firstname,lastname,idnumber,username,password,
         "userLastname": lastname,
         "userEmail": email,
         "userPhone": phone,
-        "userIdnumber":idnumber,
+        "userIdnumber": idnumber,
         "userPassword": password,
         "userName": username
       }));
   print(firstname);
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
-    if(decodedResponse['message']=="Successfully Signup!"){
+    if (decodedResponse['message'] == "Successfully Signup!") {
       print("hey boi");
-    userDataFetch('1000');
+      userDataFetch('1000');
       print("sucee");
-       Navigator.push(
-                       context, MaterialPageRoute(builder: (_) => const MyHomePage()));
-                  }
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const MyHomePage()));
+    }
   }
-    return;
-  }
-
-
-
-
-
+  return;
+}
 
 // Login Api
-userLogin(context,username,password) async {
+userLogin(context, username, password) async {
   http.Response response;
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/login.php"),
-      body: jsonEncode({     
+      body: jsonEncode({
         "userName": username,
         "userPassword": password,
       }));
-   if (response.statusCode == 200) {
+  if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
-    
-    if(decodedResponse['message']=="Successfully Login!"){
+
+    if (decodedResponse['message'] == "Successfully Login!") {
       print(decodedResponse['message']);
       userDataFetch('1000');
-       Navigator.push(
-                       context, MaterialPageRoute(builder: (_) => const MyHomePage()));
-                  }
-      return true;    
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const MyHomePage()));
+    }
+    return true;
   }
 }
 
-
-
 // data fetch api
 
-var localData=LocalData();
+var localData = LocalData();
 var data;
 userDataFetch(userId) async {
   http.Response response;
-  response =   await http.post(
+  response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/fetchUD.php"),
-      body: jsonEncode({     
+      body: jsonEncode({
         "userId": userId,
       })) as http.Response;
-      print("fetching");
-   if (response.statusCode == 200) {
-    var database=LocalDatabase();
+  print("fetching");
+  if (response.statusCode == 200) {
+    var database = LocalDatabase();
     var decodedResponse = json.decode(response.body);
-    data=decodedResponse;
+    data = decodedResponse;
     print(data);
     localData.userId = data['userId'].toString();
     localData.userDob = data['userDob'].toString();
@@ -96,94 +89,94 @@ userDataFetch(userId) async {
     localData.userPhone = data['userPhone'].toString();
     localData.userIdnumber = data['userIdnumber'].toString();
     localData.userPassword = data['userPassword '].toString();
-    localData.userName= data['userName'].toString();
-   
-   await database.tableIsEmpty(localData);
-  //  await database.insertData(localData);
-   print(localData.userEmail);
+    localData.userName = data['userName'].toString();
+
+    await database.tableIsEmpty(localData);
+    //  await database.insertData(localData);
+    print(localData.userEmail);
+  } else {
+    print("300");
   }
-  else{print("300");}
 }
-
-
 
 // take ride api
 
-takeride(context,Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot) async {
+takeride(context, Ridedate, Ridetime, pickloc, droploc, prepartner,
+    mobilenot) async {
   print("hey boi take ride");
-  http.Response response;  
+  http.Response response;
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/takeride.php"),
-      body: jsonEncode({            
-  "userId":null,
-  "userPhone":mobilenot,
-  "preferredPartner":prepartner,
-  "pickupLocationId":pickloc,
-  "destinationLocationId":droploc,
-  "RideTime":Ridetime,
-  "RideDate":Ridedate 
+      body: jsonEncode({
+        "userId": null,
+        "userPhone": mobilenot,
+        "preferredPartner": prepartner,
+        "pickupLocationId": pickloc,
+        "destinationLocationId": droploc,
+        "RideTime": Ridetime,
+        "RideDate": Ridedate
       }));
-   if (response.statusCode == 200) {
+  if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     print(decodedResponse['message']);
-    fetchride(Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot);
-    if(decodedResponse['message']=="data recieved"){
+    fetchride(Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot);
+    if (decodedResponse['message'] == "data recieved") {
       print(decodedResponse['message']);
       userDataFetch('1000');
-       Navigator.pushNamed(context, '');
-                  }
-      return true;    
+      Navigator.pushNamed(context, '');
+    }
+    return true;
   }
 }
 
 // giveride Api
 
-giveride(context,Ridedateg,Ridetimeg,plocg,dlocg,vtypeg, ppartnerg,vmodel,vnumber,phoneg) async {
-  http.Response response;  
+giveride(context, Ridedateg, Ridetimeg, plocg, dlocg, vtypeg, ppartnerg, vmodel,
+    vnumber, phoneg) async {
+  http.Response response;
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/giveride.php"),
-      body: jsonEncode({     
-   "userId":null,
-   "vehicalType":vtypeg,
-   "vehicalMode":vmodel,
-   "vehicalNumber":vnumber,
-   "startingLocationId":plocg,
-   "destinationLocationId":dlocg,
-   "RideDate":Ridedateg,
-   "RideTime":Ridetimeg,
-   "prefferedpartner":ppartnerg
-       }));
-   if (response.statusCode == 200) {
+      body: jsonEncode({
+        "userId": null,
+        "vehicalType": vtypeg,
+        "vehicalMode": vmodel,
+        "vehicalNumber": vnumber,
+        "startingLocationId": plocg,
+        "destinationLocationId": dlocg,
+        "RideDate": Ridedateg,
+        "RideTime": Ridetimeg,
+        "prefferedpartner": ppartnerg
+      }));
+  if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     print(decodedResponse['message']);
-    if(decodedResponse['message']=="data recieved"){
+    if (decodedResponse['message'] == "data recieved") {
       print(decodedResponse['message']);
       userDataFetch('1000');
-       Navigator.pushNamed(context, '');
-                  }
-      return true;    
+      Navigator.pushNamed(context, '');
+    }
+    return true;
   }
 }
 
-
 // fetch ride or algo
 
-fetchride(Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot) async {
-  http.Response response;  
+fetchride(Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot) async {
+  http.Response response;
   response = await http.post(
       Uri.parse(
           "https://travelwithphonetic.000webhostapp.com/Api/User/algo.php"),
-      body: jsonEncode({       
-  "preferredPartner":prepartner,
-  "pickupLocationId":pickloc,
-  "destinationLocationId":droploc,
-  "RideTime":Ridetime,
-  "RideDate":Ridedate,
-  "mobileno":mobilenot 
+      body: jsonEncode({
+        "preferredPartner": prepartner,
+        "pickupLocationId": pickloc,
+        "destinationLocationId": droploc,
+        "RideTime": Ridetime,
+        "RideDate": Ridedate,
+        "mobileno": mobilenot
       }));
-   if (response.statusCode == 200) {
+  if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
     print(decodedResponse['message']);
     // if(decodedResponse['message']=="Successfully Login!"){
@@ -192,6 +185,6 @@ fetchride(Ridedate,Ridetime,pickloc,droploc,prepartner,mobilenot) async {
     //    Navigator.push(
     //                    context, MaterialPageRoute(builder: (_) => const MyHomePage()));
     //               }
-      return true;    
+    return true;
   }
 }

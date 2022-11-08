@@ -15,6 +15,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       {
         return MaterialPageRoute(builder: (context) => login());
       }
+    case '/listview':
+      {
+        return MaterialPageRoute(builder: (context) => defaultpage());
+      }
     case '/signup':
       {
         return MaterialPageRoute(builder: (context) => const SignupPage());
@@ -23,18 +27,21 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       {
         return MaterialPageRoute(builder: (context) => const MyHomePage());
       }
-    case '/Takeride':{
-      return MaterialPageRoute(builder: (context) => const Takeride());
-    }  
-     case '/Giveride':{
-      return MaterialPageRoute(builder: (context) => const Giveride());
-    }  
-    case '/Contactus':{
-      return MaterialPageRoute(builder: (context) => Contactus());
-    }  
-    default:{
-      return MaterialPageRoute(builder: (context) => const defaultpage());
-}
-    }
+    case '/Takeride':
+      {
+        return MaterialPageRoute(builder: (context) => const Takeride());
+      }
+    case '/Giveride':
+      {
+        return MaterialPageRoute(builder: (context) => const Giveride());
+      }
+    case '/Contactus':
+      {
+        return MaterialPageRoute(builder: (context) => Contactus());
+      }
+    default:
+      {
+        return MaterialPageRoute(builder: (context) => const defaultpage());
+      }
   }
-  
+}

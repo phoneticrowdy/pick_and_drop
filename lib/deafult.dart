@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 
-// Anshu
+import 'listmodel.dart';
 
+// Anshu
 
 class defaultpage extends StatefulWidget {
   const defaultpage({Key? key}) : super(key: key);
@@ -16,13 +17,10 @@ class _defaultpageState extends State<defaultpage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
   var userdefaultpagereaction;
-  var _isLoading=false;
+  var _isLoading = false;
 
-
-
-void _fetchData(BuildContext context) async {
+  void _fetchData(BuildContext context) async {
     // show the loading dialog
     showDialog(
         // The user CANNOT close this dialog  by pressing outsite it
@@ -57,10 +55,6 @@ void _fetchData(BuildContext context) async {
     Navigator.of(context).pop();
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,81 +62,32 @@ void _fetchData(BuildContext context) async {
       appBar: AppBar(
         title: Text("defaultpage Page"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 0),
-              child: Center(
-                child: Container(
-                    // width: 200, height: 150,
-                     child: Image.asset(img_pager)),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-              //  controller: nameController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'abc@gmail.com'),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
-              child: TextField(
-                obscureText: true,
-                // controller: passwordController,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Anshu@123'),
-              ),
-            ),
-            SizedBox(
-              height: 10
-            ),
-            InkWell(
-              child: Container(
-                  child: Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              )),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              child: ElevatedButton(                
-                onPressed: () {_fetchData(context);
-          },
-                child: Text(
-                  'defaultpage',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+      body: Column(children: [
+        for (int i = 0; i <= 4; i++)
+          Card(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Image.asset(
+                    'assets/images/thar-exterior-right-front-three-quarter-11.jpg',
+                  ),
                 ),
-                style: ElevatedButton.styleFrom(
-              primary: pink_ff5465,
-              onPrimary: Colors.white,
-              elevation: 0,
-              padding: EdgeInsets.symmetric(horizontal: 35, vertical: 10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-                // side: BorderSide(color: skygreen_24d39e, width: 0),
-              ),
-            )
-              ),
+                Expanded(
+                  flex: 2,
+                  child: ListTile(
+                    title: Text(
+                        'Anshu Singh                          Padari - khajanchi'),
+                    subtitle: Text('9:15AM-10:55AM'),
+                    // trailing: Icon(Icons.more_vert),
+                    isThreeLine: true,
+                    onTap: () {},
+                  ),
+                ),
+              ],
             ),
-
-            
-            SizedBox(
-              height: 100,
-            ),
-            Text('New User? Create Account')
-          ],
-        ),
-      ),
+          ),
+      ]),
     );
   }
 }
