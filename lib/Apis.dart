@@ -122,8 +122,7 @@ takeride(context, Ridedate, Ridetime, pickloc, droploc, prepartner,
     print(decodedResponse['message']);
     fetchride(Ridedate, Ridetime, pickloc, droploc, prepartner, mobilenot);
     if (decodedResponse['message'] == "data recieved") {
-      print(decodedResponse['message']);
-      userDataFetch('1000');
+      // userDataFetch('1000');
       Navigator.pushNamed(context, '');
     }
     return true;

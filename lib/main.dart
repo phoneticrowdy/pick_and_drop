@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pick_and_drop/Style/Constant.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
-import 'package:pick_and_drop/deafult.dart';
+import 'package:pick_and_drop/rides.dart';
 import 'package:pick_and_drop/login.dart';
 import 'package:pick_and_drop/routes.dart';
 import 'HOME.dart';

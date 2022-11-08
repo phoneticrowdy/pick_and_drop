@@ -21,12 +21,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: bg_456999,
         appBar: AppBar(
+          backgroundColor: pink_ff5465,
+          toolbarHeight: 100,
           title: Text(
             "Home",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Colors.white),
+          // backgroundColor: Colors.white,
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -128,6 +130,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ],
                     ),
+                  ),
+                  InkWell(
+                    child: Container(
+                        margin: EdgeInsets.only(left: 18.3, top: 32.3),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              setting,
+                              height: 22,
+                              color: Colors.white,
+                              width: 22,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "ride View",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: sfpro_text_semibold),
+                            ),
+                          ],
+                        )),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/ridedetails');
+                    },
                   ),
                   InkWell(
                     child: Container(

@@ -1,4 +1,3 @@
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ class SignupPage extends StatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
 }
+
 var dob;
 var gender;
 TextEditingController email = TextEditingController();
@@ -22,11 +22,8 @@ TextEditingController firstname = TextEditingController();
 TextEditingController lastname = TextEditingController();
 TextEditingController idnumber = TextEditingController();
 TextEditingController username = TextEditingController();
-TextEditingController password= TextEditingController();
+TextEditingController password = TextEditingController();
 TextEditingController phone = TextEditingController();
-
-
-
 
 var _formkey_editProfile = GlobalKey<FormState>();
 final List<String> genderItems = [
@@ -43,10 +40,7 @@ class _SignupPageState extends State<SignupPage> {
   String? dropdownValue_location;
   bool isLayoutFirst = false;
 
-
-
-
-void _fetchData(BuildContext context) async {
+  void _fetchData(BuildContext context) async {
     // show the loading dialog
     showDialog(
         // The user CANNOT close this dialog  by pressing outsite it
@@ -75,30 +69,21 @@ void _fetchData(BuildContext context) async {
         });
 
     // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
-    await Future.delayed(userData(context,dob.toString(),gender.toString(),email.text,firstname.text,lastname.text,idnumber.text,username.text,password.text,phone.text));
+    await Future.delayed(userData(
+        context,
+        dob.toString(),
+        gender.toString(),
+        email.text,
+        firstname.text,
+        lastname.text,
+        idnumber.text,
+        username.text,
+        password.text,
+        phone.text));
 
     // Close the dialog programmatically
     Navigator.of(context).pop();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // String? value;
   @override
@@ -179,8 +164,7 @@ void _fetchData(BuildContext context) async {
                   Container(
                     margin: EdgeInsets.only(left: 15, right: 15, top: 30),
                     child: DateTimeFormField(
-                      
-                     decoration: InputDecoration(
+                      decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.only(left: 20, top: 15, bottom: 15),
                         labelText: "Date of Birth",
@@ -202,7 +186,6 @@ void _fetchData(BuildContext context) async {
                             borderSide:
                                 BorderSide(color: gray_9d9d9d, width: 1)),
                       ),
-
                       mode: DateTimeFieldPickerMode.date,
                       autovalidateMode: AutovalidateMode.always,
                       validator: (e) => (e?.day ?? 0) == 1
@@ -210,7 +193,7 @@ void _fetchData(BuildContext context) async {
                           : null,
                       onDateSelected: (DateTime value) {
                         // print(value);
-                        dob=value;
+                        dob = value;
                       },
                     ),
                   ),
@@ -241,7 +224,9 @@ void _fetchData(BuildContext context) async {
                       isExpanded: true,
                       hint: const Text(
                         'Select Your Gender',
-                        style: TextStyle(fontSize: 14,),
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
                       ),
                       icon: const Icon(
                         Icons.arrow_drop_down,
@@ -271,7 +256,7 @@ void _fetchData(BuildContext context) async {
                       },
                       onChanged: (value) {
                         //Do something when changing the item if you want.
-                         gender = value.toString();
+                        gender = value.toString();
                       },
                       onSaved: (value) {
                         gender = value.toString();
@@ -368,7 +353,7 @@ void _fetchData(BuildContext context) async {
                         // enabled: false,
                         // initialValue: "Adhaar Number",
                         controller: idnumber,
-                        
+
                         // style: TextStyle(color: Colors.black),
                         cursorColor: gray_9d9d9d,
                         keyboardType: TextInputType.emailAddress,
@@ -602,7 +587,7 @@ void _fetchData(BuildContext context) async {
                                     content: Text('Processing Data')),
                               );
                             }
-                           _fetchData(context);
+                            _fetchData(context);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: btn_black_0b0b0b,

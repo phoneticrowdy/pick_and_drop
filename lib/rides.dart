@@ -52,10 +52,12 @@ class _RidesState extends State<Rides> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: pink_ff5465,
+          toolbarHeight: 100,
           title: Text("Rides Page"),
         ),
         body: ListView.builder(
-            itemCount: 3,
+            itemCount: 5,
             itemBuilder: (context, i) => Container(
                   margin: EdgeInsets.only(left: 15, right: 15, bottom: 15),
                   child: Column(
@@ -90,7 +92,10 @@ class _RidesState extends State<Rides> {
                                     subtitle: Text('9:15AM-10:55AM'),
                                     // trailing: Icon(Icons.more_vert),
                                     isThreeLine: true,
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, '/ridedetails');
+                                    },
                                   ),
                                 ),
                               ],

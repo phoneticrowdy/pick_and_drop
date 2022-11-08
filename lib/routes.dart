@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pick_and_drop/HOME.dart';
 import 'package:pick_and_drop/contactus.dart';
-import 'package:pick_and_drop/deafult.dart';
+import 'package:pick_and_drop/ridedetais.dart';
+import 'package:pick_and_drop/rides.dart';
 import 'package:pick_and_drop/login.dart';
 import 'package:pick_and_drop/signup.dart';
 import 'package:pick_and_drop/take%20ride.dart';
 
+import 'booked.dart';
 import 'give ride.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -38,6 +40,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/Contactus':
       {
         return MaterialPageRoute(builder: (context) => Contactus());
+      }
+    case '/ridedetails':
+      {
+        return MaterialPageRoute(builder: (context) => Ridedetails());
+      }
+    case '/booked':
+      {
+        return MaterialPageRoute(builder: (context) => Booked());
       }
     default:
       {
