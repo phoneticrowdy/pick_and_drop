@@ -42,3 +42,11 @@ const icon_plus = 'assets/images/icon_plus.svg';
 const icon_bag = 'assets/images/icon_bag.svg';
 const icon_arrow_right = 'assets/images/icon_arrow_right.svg';
 const calendar_circle = 'assets/images/calendar_circle.svg';
+
+List photo = [
+  'assets/images/1.jpg',
+  'assets/images/2.jfif',
+  'assets/images/3.jfif',
+  'assets/images/4.jfif',
+  'assets/images/5.jfif'
+];
