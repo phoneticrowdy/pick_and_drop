@@ -2,24 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 
-import 'listmodel.dart';
-
 // Anshu
 
-class defaultpage extends StatefulWidget {
-  const defaultpage({Key? key}) : super(key: key);
+class Rides extends StatefulWidget {
+  const Rides({Key? key}) : super(key: key);
 
   @override
-  State<defaultpage> createState() => _defaultpageState();
+  State<Rides> createState() => _RidesState();
 }
 
-class _defaultpageState extends State<defaultpage> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  var userdefaultpagereaction;
-  var _isLoading = false;
-
+class _RidesState extends State<Rides> {
   void _fetchData(BuildContext context) async {
     // show the loading dialog
     showDialog(
@@ -58,36 +50,54 @@ class _defaultpageState extends State<defaultpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("defaultpage Page"),
-      ),
-      body: Column(children: [
-        for (int i = 0; i <= 4; i++)
-          Card(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Image.asset(
-                    'assets/images/thar-exterior-right-front-three-quarter-11.jpg',
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: ListTile(
-                    title: Text(
-                        'Anshu Singh                          Padari - khajanchi'),
-                    subtitle: Text('9:15AM-10:55AM'),
-                    // trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
-          ),
-      ]),
-    );
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text("Rides Page"),
+        ),
+        body: ListView.builder(
+            itemCount: 3,
+            itemBuilder: (context, i) => Container(
+                  margin: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          // highlightColor: Colors.red,
+                          //splashColor: Colors.blueAccent,
+
+                          // onTap: () {
+                          //   setState(() {
+                          //     sampleData.forEach(
+                          //         (element) => element.selected = false);
+                          //     sampleData[i].selected = true;
+                          //   });
+                          // },
+                          child: Card(
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 1,
+                                  child: Image.asset(
+                                    'assets/images/$i.jfif',
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: ListTile(
+                                    title: Text(
+                                        'Anshu Singh                         Padari - khajanchi'),
+                                    subtitle: Text('9:15AM-10:55AM'),
+                                    // trailing: Icon(Icons.more_vert),
+                                    isThreeLine: true,
+                                    onTap: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ]),
+                )));
   }
 }

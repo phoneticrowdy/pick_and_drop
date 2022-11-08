@@ -17,7 +17,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       }
     case '/listview':
       {
-        return MaterialPageRoute(builder: (context) => defaultpage());
+        return MaterialPageRoute(builder: (context) => Rides());
       }
     case '/signup':
       {
@@ -41,7 +41,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       }
     default:
       {
-        return MaterialPageRoute(builder: (context) => const defaultpage());
+        return MaterialPageRoute(builder: (context) => const Rides());
       }
   }
 }

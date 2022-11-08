@@ -114,8 +114,8 @@ takeride(context, Ridedate, Ridetime, pickloc, droploc, prepartner,
         "preferredPartner": prepartner,
         "pickupLocationId": pickloc,
         "destinationLocationId": droploc,
-        "RideTime": Ridetime,
-        "RideDate": Ridedate
+        "RideTime": Ridetime.toString(),
+        "RideDate": Ridedate.toString()
       }));
   if (response.statusCode == 200) {
     var decodedResponse = json.decode(response.body);
