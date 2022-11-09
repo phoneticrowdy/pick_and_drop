@@ -14,3 +14,12 @@ var ride;
 var startpoint;
 var droppoint;
 var flag;
+int giveId = 0;
+var takeId;
+var GlobaluserId;
+var gridedetails;
+
+var plocg;
+var Ridedateg;
+var dlocg;
+var Ridetimeg;

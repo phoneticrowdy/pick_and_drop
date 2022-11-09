@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pick_and_drop/Apis.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 
@@ -43,7 +44,7 @@ class _RidedetailsState extends State<Ridedetails> {
         });
 
     // Your asynchronous computation here (fetching data from an API, processing files, inserting something to the database, etc)
-    // await Future.delayed();
+    await Future.delayed(book(context, takeId, GlobaluserId));
 
     // Close the dialog programmatically
     Navigator.of(context).pop();
@@ -149,7 +150,8 @@ class _RidedetailsState extends State<Ridedetails> {
               Container(
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/booked');
+                      takeId = ride[flag]['userId'];
+                      _fetchData(context);
                     },
                     child: Text(
                       'Book',

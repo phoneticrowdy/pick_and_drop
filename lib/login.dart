@@ -3,7 +3,7 @@ import 'package:pick_and_drop/Apis.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
 import 'package:pick_and_drop/Style/my_icons.dart';
 
-// Anshu Shailesh singh
+// Anshu  Singh
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -60,9 +60,15 @@ class _loginState extends State<login> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: pink_ff5465,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.teal.shade100,
         toolbarHeight: 100,
-        title: Text("Login Page"),
+        title: Text(
+          "Login Page",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -121,7 +127,7 @@ class _loginState extends State<login> {
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    primary: Colors.teal.shade700,
                     onPrimary: Colors.white,
                     elevation: 0,
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 13),

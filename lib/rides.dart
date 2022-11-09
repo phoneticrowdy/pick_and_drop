@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pick_and_drop/Style/Constant.dart';
 import 'package:pick_and_drop/Style/my_colors.dart';
-import 'package:pick_and_drop/Style/my_icons.dart';
-import 'package:sprintf/sprintf.dart';
 // Anshu
 
 class Rides extends StatefulWidget {

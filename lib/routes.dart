@@ -10,6 +10,7 @@ import 'package:pick_and_drop/take%20ride.dart';
 import 'package:pick_and_drop/wait.dart';
 import 'package:pick_and_drop/walkthrough.dart';
 
+import 'Gbooke.dart';
 import 'booked.dart';
 import 'give ride.dart';
 
@@ -49,11 +50,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       }
     case '/ridedetails':
       {
-        return MaterialPageRoute(builder: (context) => Ridedetails());
+        return MaterialPageRoute(builder: (context) => const Ridedetails());
       }
     case '/booked':
       {
-        return MaterialPageRoute(builder: (context) => Booked());
+        return MaterialPageRoute(builder: (context) => const Booked());
+      }
+    case '/Gbooked':
+      {
+        return MaterialPageRoute(builder: (context) => const Gbooked());
       }
     case '/walk':
       {

@@ -15,6 +15,7 @@ void main() async {
   userDetails = await database.getData();
   datalen = await userDetails.length;
   if (await datalen > 0) {
+    GlobaluserId = userDetails[0]['userId'];
     print(datalen);
     Name_user = await userDetails[0]["userFirstname"] +
         " " +

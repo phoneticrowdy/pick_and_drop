@@ -28,10 +28,6 @@ final List<String> VehicatTypeItems = ['Sedan', "Suv", "Bike", "Auto"];
 
 String? selectedValue;
 
-var Ridedateg;
-var Ridetimeg;
-var plocg;
-var dlocg;
 var vtypeg;
 var ppartnerg;
 TextEditingController vmodel = TextEditingController();

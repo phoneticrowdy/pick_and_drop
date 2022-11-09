@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         drawer: Drawer(
-            backgroundColor: btn_black_0b0b0b,
+            backgroundColor: Colors.white,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         icon_back,
                         height: 15,
                         width: 21.3,
-                        color: Colors.white,
+                        color: Colors.teal.shade700,
                       )),
                   Container(
                     margin: EdgeInsets.only(left: 18.3, top: 22.3),
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Name_user,
                               style: TextStyle(
                                   fontSize: 18.3,
-                                  color: Colors.white,
+                                  color: Colors.teal.shade700,
                                   fontFamily: sfpro_text_semibold),
                             ),
                             SizedBox(
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   img_star,
                                   height: 18,
                                   width: 18,
-                                  color: Colors.white,
+                                  color: Colors.amberAccent,
                                 ),
                                 SizedBox(
                                   width: 8,
@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               setting,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -150,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "ride View",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -168,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               setting,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "wait",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               setting,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -206,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "List View",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -224,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               setting,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -234,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "Signup",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -252,7 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               setting,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -262,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "Login",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -281,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Image.asset(
                               qr_code,
-                              color: Colors.white,
+                              color: Colors.black,
                               height: 22,
                               width: 22,
                             ),
@@ -293,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "Give a Ride",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -311,7 +311,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               setting,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -322,7 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "Take a ride",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -341,7 +341,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               call,
                               height: 22,
                               width: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                             SizedBox(
                               width: 10,
@@ -350,7 +350,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               "Contact Us",
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -368,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.asset(
                               logout,
                               height: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               width: 22,
                             ),
                             SizedBox(
@@ -378,7 +378,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               str_logout,
                               style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: sfpro_text_semibold),
                             ),
                           ],
@@ -395,8 +395,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Align(
                       alignment: FractionalOffset.bottomCenter,
                       child: Container(
-                        margin:
-                            EdgeInsets.only(left: 22, right: 22, bottom: 25),
+                        margin: const EdgeInsets.only(
+                            left: 22, right: 22, bottom: 25),
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
