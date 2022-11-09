@@ -55,9 +55,15 @@ class _RidedetailsState extends State<Ridedetails> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: pink_ff5465,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.teal.shade100,
         toolbarHeight: 100,
-        title: Text("Ridedetails Page"),
+        title: Text(
+          "Ride Details",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Container(
           child: Container(
@@ -158,7 +164,7 @@ class _RidedetailsState extends State<Ridedetails> {
                       style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
+                      primary: Colors.teal.shade700,
                       onPrimary: Colors.white,
                       elevation: 0,
                       padding:

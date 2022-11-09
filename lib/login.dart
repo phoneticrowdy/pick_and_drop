@@ -115,7 +115,7 @@ class _loginState extends State<login> {
               )),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
             ),
             Container(
               child: ElevatedButton(

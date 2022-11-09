@@ -55,11 +55,28 @@ class _waitState extends State<wait> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: pink_ff5465,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.teal.shade100,
           toolbarHeight: 100,
-          title: Text("wait Page"),
+          title: Text(
+            "Search Partner",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-        body: Center(
+        body: Container(
+          margin: EdgeInsets.all(6.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            image: const DecorationImage(
+              image: NetworkImage(
+                  "https://images.unsplash.com/photo-1667848006694-5f032afe4e47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        bottomNavigationBar: Material(
           child: ElevatedButton(
               onPressed: () {
                 _fetchData(context);

@@ -56,9 +56,15 @@ class _GbookedState extends State<Gbooked> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: pink_ff5465,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.teal.shade100,
           toolbarHeight: 100,
-          title: Text("Your Gbooked Ride"),
+          title: Text(
+            "Ride Details",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: Container(
           child: Column(children: [

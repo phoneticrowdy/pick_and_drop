@@ -154,7 +154,7 @@ class _BookedState extends State<Booked> {
                 children: <Widget>[
                   const ListTile(
                     leading: Icon(Icons.currency_rupee, size: 45),
-                    title: Text('1000 Rupee'),
+                    title: Text('50 Rupee'),
                     subtitle: Text('To pay'),
                   ),
                 ],
@@ -173,7 +173,7 @@ class _BookedState extends State<Booked> {
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    primary: Colors.teal.shade700,
                     onPrimary: Colors.white,
                     elevation: 0,
                     padding: EdgeInsets.symmetric(horizontal: 60, vertical: 10),

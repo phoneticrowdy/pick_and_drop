@@ -56,9 +56,15 @@ class _RidesState extends State<Rides> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: pink_ff5465,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.teal.shade100,
           toolbarHeight: 100,
-          title: Text("Rides Page"),
+          title: Text(
+            "Available Rides",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: ListView.builder(
             itemCount: ride.length,

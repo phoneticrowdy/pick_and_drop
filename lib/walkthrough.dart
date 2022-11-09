@@ -108,7 +108,7 @@ class _WalkthroughPagerState extends State<WalkthroughPager> {
             done: Container(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 33),
                 decoration: BoxDecoration(
-                    color: pink_ff5465,
+                    color: Colors.teal.shade700,
                     borderRadius: new BorderRadius.circular(8)),
                 child: const Text(
                   "Done",
@@ -123,7 +123,7 @@ class _WalkthroughPagerState extends State<WalkthroughPager> {
             next: Container(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 35),
                 decoration: BoxDecoration(
-                    color: pink_ff5465,
+                    color: Colors.teal.shade700,
                     borderRadius: new BorderRadius.circular(8)),
                 child: const Text(
                   "Next",
